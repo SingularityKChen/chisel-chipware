@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+firtool.elf.strip -disable-infer-rw --disable-annotation-unknown --split-verilog $@
