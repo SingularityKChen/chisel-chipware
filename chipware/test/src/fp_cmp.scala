@@ -28,10 +28,10 @@ class fp_cmp(val sig_width: Int = 23,
   // Connect the ports
   U1.io.a := io.a
   U1.io.b := io.b
-  U1.io.status0 := io.status0
-  U1.io.status1 := io.status1
-  U1.io.z0 := io.z0
-  U1.io.z1 := io.z1
+  io.status0 := U1.io.status0
+  io.status1 := U1.io.status1
+  io.z0 := U1.io.z0
+  io.z1 := U1.io.z1
   U1.io.zctr := io.zctr
   io.agtb := U1.io.agtb
   io.altb := U1.io.altb

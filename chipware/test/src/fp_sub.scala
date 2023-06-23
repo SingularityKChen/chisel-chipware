@@ -15,6 +15,6 @@ class fp_sub(val sig_width: Int = 23,
   U1.io.a := io.a
   U1.io.b := io.b
   U1.io.rnd := io.rnd
-  U1.io.status := io.status
+  io.status := U1.io.status
   io.z := U1.io.z
 }
