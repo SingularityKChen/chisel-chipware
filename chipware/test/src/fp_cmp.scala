@@ -3,7 +3,7 @@ import chisel3._
 class fp_cmp(val sig_width: Int = 23,
              val exp_width: Int = 8,
              val ieee_compliance: Int = 1,
-             val quieten_nans: Int = 1) extends Module {
+             val quieten_nans: Int = 1) extends RawModule {
   require(sig_width >= 2 && sig_width <= 253, "sig_width must be between 2 and 253")
   require(exp_width >= 3 && exp_width <= 31, "exp_width must be between 3 and 31")
   require(ieee_compliance == 0 || ieee_compliance == 1, "ieee_compliance must be 0 or 1")

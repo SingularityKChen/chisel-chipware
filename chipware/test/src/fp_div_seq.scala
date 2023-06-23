@@ -10,7 +10,7 @@ class fp_div_seq(val sig_width: Int = 23,
                  val early_start: Int = 0,
                  val internal_reg: Int = 1,
                  val num_cyc: Int = 5,
-                 val arch: Int = 0) extends Module {
+                 val arch: Int = 0) extends RawModule {
   // Create an instance of the BlackBox class
   protected val U1: CW_fp_div_seq = Module(new CW_fp_div_seq(
     sig_width,

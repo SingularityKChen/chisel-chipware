@@ -1,7 +1,7 @@
 import chisel3._
 import chisel3.util.log2Ceil
 
-class arbiter_fcfs(val n: Int = 4, val park_mode: Int = 1, val park_index: Int = 0, val output_mode: Int = 1) extends Module {
+class arbiter_fcfs(val n: Int = 4, val park_mode: Int = 1, val park_index: Int = 0, val output_mode: Int = 1) extends RawModule {
   val io = IO(new Bundle {
     val clk: Clock = Input(Clock())
     val rst_n: Bool = Input(Bool())

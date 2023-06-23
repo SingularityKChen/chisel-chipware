@@ -5,7 +5,7 @@ class fp_sincos(
                  exp_width: Int = 6,
                  ieee_compliance: Int = 1,
                  pi_multiple: Int = 1
-               ) extends Module {
+               ) extends RawModule {
   val io = IO(new Bundle {
     val a: UInt = Input(UInt((1 + exp_width + sig_width).W))
     val sin_cos: Bool = Input(Bool())

@@ -2,7 +2,7 @@ import chisel3._
 import chisel3.util.log2Ceil
 
 // Define a parameterized Chisel Module
-class arbiter_dp(val n: Int, val park_mode: Int, val park_index: Int, val output_mode: Int) extends Module {
+class arbiter_dp(val n: Int, val park_mode: Int, val park_index: Int, val output_mode: Int) extends RawModule {
   // Declare the parameters
   protected val index_width: Int = log2Ceil(n)
   val io = IO(new Bundle {

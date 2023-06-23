@@ -4,7 +4,7 @@ class fp_addsub(
                  sig_width: Int = 23,
                  exp_width: Int = 8,
                  ieee_compliance: Int = 1
-               ) extends Module {
+               ) extends RawModule {
   val io = IO(new Bundle {
     val a: UInt = Input(UInt((sig_width + exp_width + 1).W))
     val b: UInt = Input(UInt((sig_width + exp_width + 1).W))

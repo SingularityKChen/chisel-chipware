@@ -3,7 +3,7 @@ import chisel3._
 class fp_flt2i(val sig_width: Int = 23,
                val exp_width: Int = 8,
                val isize: Int = 32,
-               val ieee_compliance: Int = 1) extends Module {
+               val ieee_compliance: Int = 1) extends RawModule {
   // Define an instance of the BlackBox class
   protected val U1: CW_fp_flt2i = Module(new CW_fp_flt2i(sig_width, exp_width, isize, ieee_compliance))
 

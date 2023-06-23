@@ -1,7 +1,7 @@
 import chisel3._
 import chisel3.util._
 
-class arbiter_rr(val num_req: Int = 4, val reg_output: Int = 1, val index_mode: Int = 0) extends Module {
+class arbiter_rr(val num_req: Int = 4, val reg_output: Int = 1, val index_mode: Int = 0) extends RawModule {
   val io = IO(new Bundle {
     val clk: Clock = Input(Clock())
     val rst_n: Bool = Input(Bool())

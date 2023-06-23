@@ -1,7 +1,7 @@
 import chisel3._
 
 // Define the Chisel Module class
-class fp_ln(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compliance: Int = 1, val arch: Int = 0, val extra_prec: Int = 0) extends Module {
+class fp_ln(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compliance: Int = 1, val arch: Int = 0, val extra_prec: Int = 0) extends RawModule {
   // Create an instance of the BlackBox class
   protected val U1: CW_fp_ln = Module(new CW_fp_ln(sig_width, exp_width, ieee_compliance, arch, extra_prec))
 

@@ -3,7 +3,7 @@ import chisel3._
 class fp_i2flt(val sig_width: Int = 23,
                val exp_width: Int = 8,
                val isize: Int = 32,
-               val isign: Int = 1) extends Module {
+               val isign: Int = 1) extends RawModule {
   val io = IO(new Bundle {
     val a: UInt = Input(UInt(isize.W))
     val rnd: UInt = Input(UInt(3.W))

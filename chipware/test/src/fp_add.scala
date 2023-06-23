@@ -6,7 +6,7 @@ class fp_add(
               ieee_compliance: Int = 1,
               ieee_NaN_compliance: Int = 0,
               arch: Int = 0
-            ) extends Module {
+            ) extends RawModule {
   val io = IO(new Bundle {
     val a: UInt = Input(UInt((sig_width + exp_width + 1).W))
     val b: UInt = Input(UInt((sig_width + exp_width + 1).W))

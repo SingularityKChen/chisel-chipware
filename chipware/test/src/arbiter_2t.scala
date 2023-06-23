@@ -1,7 +1,7 @@
 import chisel3._
 import chisel3.util._
 
-class arbiter_2t(n: Int, p_width: Int, park_mode: Int, park_index: Int, output_mode: Int) extends Module {
+class arbiter_2t(n: Int, p_width: Int, park_mode: Int, park_index: Int, output_mode: Int) extends RawModule {
   val io = IO(new Bundle {
     // Define the module's ports here
     val clk: Clock = Input(Clock())

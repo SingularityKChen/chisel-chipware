@@ -2,7 +2,7 @@ import chisel3._
 
 class fp_div(val sig_width: Int = 23,
              val exp_width: Int = 8,
-             val ieee_compliance: Int = 1) extends Module {
+             val ieee_compliance: Int = 1) extends RawModule {
   val io = IO(new Bundle {
     val a: UInt = Input(UInt((sig_width + exp_width + 1).W))
     val b: UInt = Input(UInt((sig_width + exp_width + 1).W))
