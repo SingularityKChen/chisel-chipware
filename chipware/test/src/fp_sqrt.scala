@@ -10,8 +10,8 @@ class fp_sqrt(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_complian
 
   protected val U1: CW_fp_sqrt = Module(new CW_fp_sqrt(sig_width, exp_width, ieee_compliance))
 
-  U1.io.a := io.a
+  U1.io.a   := io.a
   U1.io.rnd := io.rnd
   io.status := U1.io.status
-  io.z := U1.io.z
+  io.z      := U1.io.z
 }
