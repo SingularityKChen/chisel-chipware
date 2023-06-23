@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-firtool.elf.strip -disable-infer-rw --disable-annotation-unknown --split-verilog $@
+firtool.elf.strip --lowering-options=disallowLocalVariables,disallowPackedArrays,locationInfoStyle=wrapInAtSquareBracket $@
