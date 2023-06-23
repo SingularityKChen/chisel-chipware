@@ -3,6 +3,7 @@ BUILD_DIR = ./build
 export PATH := $(PATH):$(abspath ./utils)
 
 test:
+	mkdir -p $(BUILD_DIR)
 	mill -i -j 0 __.test
 
 verilog:
