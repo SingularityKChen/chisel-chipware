@@ -35,3 +35,7 @@ make bsp compile
 ```bash
 make doc
 ```
+
+# Thanks
+
+This repo uses the template from [chisel-playground](https://github.com/OpenXiangShan/chisel-playground).
