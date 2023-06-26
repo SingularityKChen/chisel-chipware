@@ -11,14 +11,6 @@ object ElaborateUTest extends TestSuite {
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
     }
-    test("should instantiate arbiter_sp") {
-      def top       = new arbiter_sp(4, 1, 0, 0)
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
     test("should instantiate arbiter_2t") {
       def top       = new arbiter_2t(4, 2, 1, 0, 1)
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
@@ -51,11 +43,124 @@ object ElaborateUTest extends TestSuite {
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
     }
+    test("should instantiate arbiter_sp") {
+      def top = new arbiter_sp(4, 1, 0, 0)
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc1") {
+      def top       = new bc_1()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc2") {
+      def top = new bc_2()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc3") {
+      def top = new bc_3()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc4") {
+      def top = new bc_4()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc5") {
+      def top = new bc_5()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc7") {
+      def top = new bc_7()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc8") {
+      def top = new bc_8()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc9") {
+      def top = new bc_9()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate bc10") {
+      def top = new bc_10()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate fp_add") {
+      def top = new fp_add()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
     test("should instantiate fp_addsub") {
       def top       = new fp_addsub()
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(
         args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate fp_cmp") {
+      def top = new fp_cmp()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate fp_div") {
+      def top = new fp_div()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate fp_div_seq") {
+      def top = new fp_div_seq()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
     }
@@ -67,48 +172,16 @@ object ElaborateUTest extends TestSuite {
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
     }
-    test("should instantiate fp_mac") {
-      def top       = new fp_mac()
+    test("should elaborate fp_exp2") {
+      def top = new fp_exp2()
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
-    test("should instantiate fp_sub") {
-      def top       = new fp_sub()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
-    test("should elaborate fp_cmp") {
-      def top       = new fp_cmp()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
+        args = Array("--target-dir", "./build"),
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
     }
     test("should elaborate fp_flt2i") {
       def top       = new fp_flt2i()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
-    test("should elaborate fp_mult") {
-      def top       = new fp_mult()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
-    test("should elaborate fp_div") {
-      def top       = new fp_div()
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(
         args        = Array("--target-dir", "./build"),
@@ -123,48 +196,8 @@ object ElaborateUTest extends TestSuite {
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
     }
-    test("should elaborate fp_recip") {
-      def top       = new fp_recip()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
-    test("should elaborate fp_div_seq") {
-      def top       = new fp_div_seq()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
     test("should elaborate fp_ln") {
       def top       = new fp_ln()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
-    test("should elaborate fp_sincos") {
-      def top       = new fp_sincos()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
-    test("should elaborate fp_add") {
-      def top       = new fp_add()
-      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
-      (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
-        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
-      )
-    }
-    test("should elaborate fp_exp2") {
-      def top       = new fp_exp2()
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(
         args        = Array("--target-dir", "./build"),
@@ -178,16 +211,54 @@ object ElaborateUTest extends TestSuite {
         args        = Array("--target-dir", "./build"),
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
-
     }
-    test("should elaborate fp_sqrt") {
-      def top       = new fp_sqrt()
+    test("should instantiate fp_mac") {
+      def top = new fp_mac()
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(
-        args        = Array("--target-dir", "./build"),
+        args = Array("--target-dir", "./build"),
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
-
+    }
+    test("should elaborate fp_mult") {
+      def top = new fp_mult()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate fp_recip") {
+      def top = new fp_recip()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate fp_sincos") {
+      def top = new fp_sincos()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should elaborate fp_sqrt") {
+      def top = new fp_sqrt()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should instantiate fp_sub") {
+      def top = new fp_sub()
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
     }
   }
 }
