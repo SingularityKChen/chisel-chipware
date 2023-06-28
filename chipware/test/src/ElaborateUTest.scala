@@ -399,5 +399,32 @@ object ElaborateUTest extends TestSuite {
         annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
       )
     }
+    test("should instantiate b10b_dec") {
+      def top = new b10b_dec()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should instantiate b10b_enc") {
+      def top = new b10b_enc()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+    test("should instantiate b10b_unbal") {
+      def top = new b10b_unbal()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
   }
 }
