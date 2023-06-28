@@ -57,7 +57,7 @@ class CW_ram_r_w_a_dff(val data_width: Int = 16, val depth: Int = 8, val rst_mod
     val cs_n:      Bool = Input(Bool())
     val wr_n:      Bool = Input(Bool())
     val test_mode: Bool = Input(Bool())
-    val test_clk:  Bool = Input(Bool())
+    val test_clk:  Clock = Input(Clock())
     val rd_addr:   UInt = Input(UInt(log2Ceil(depth).W))
     val wr_addr:   UInt = Input(UInt(log2Ceil(depth).W))
     val data_in:   UInt = Input(UInt(data_width.W))

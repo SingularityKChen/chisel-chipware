@@ -9,7 +9,7 @@ class fp_i2flt(val sig_width: Int = 23, val exp_width: Int = 8, val isize: Int =
     val z:      UInt = Output(UInt((sig_width + exp_width + 1).W))
   })
 
-  val U1: CW_fp_i2flt = Module(new CW_fp_i2flt(sig_width, exp_width, isize, isign))
+  protected val U1: CW_fp_i2flt = Module(new CW_fp_i2flt(sig_width, exp_width, isize, isign))
 
   U1.io.a   := io.a
   U1.io.rnd := io.rnd

@@ -13,7 +13,7 @@ class ram_r_w_s_dff(val data_width: Int = 16, val depth: Int = 8, val rst_mode: 
     val data_out: UInt  = Output(UInt(data_width.W))
   })
 
-  val U1: CW_ram_r_w_s_dff = Module(new CW_ram_r_w_s_dff(data_width, depth, rst_mode))
+  protected val U1: CW_ram_r_w_s_dff = Module(new CW_ram_r_w_s_dff(data_width, depth, rst_mode))
 
   U1.io.clk     := io.clk
   U1.io.rst_n   := io.rst_n

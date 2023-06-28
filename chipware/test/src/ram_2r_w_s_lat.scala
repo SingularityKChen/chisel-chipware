@@ -17,7 +17,7 @@ class ram_2r_w_s_lat(val data_width: Int = 16, val depth: Int = 8) extends RawMo
   require(data_width >= 1 && data_width <= 256, "data_width must be in the range [1, 256]")
   require(depth >= 2 && depth <= 256, "depth must be in the range [2, 256]")
 
-  val U1: CW_ram_2r_w_s_lat = Module(new CW_ram_2r_w_s_lat(data_width, depth))
+  protected val U1: CW_ram_2r_w_s_lat = Module(new CW_ram_2r_w_s_lat(data_width, depth))
   U1.io.clk       := io.clk
   U1.io.cs_n      := io.cs_n
   U1.io.wr_n      := io.wr_n
