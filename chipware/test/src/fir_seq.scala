@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class fir_seq(val data_in_width: Int = 8, val coef_width: Int = 8, val data_out_width: Int = 16, val order: Int = 6)
     extends RawModule {
@@ -28,4 +30,18 @@ class fir_seq(val data_in_width: Int = 8, val coef_width: Int = 8, val data_out_
   io.start            := U1.io.start
   io.hold             := U1.io.hold
   io.data_out         := U1.io.data_out
+}
+
+object fir_seq extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate fir_seq") {
+      def top = new fir_seq()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }
