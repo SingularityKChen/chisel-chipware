@@ -4,29 +4,29 @@ export PATH := $(PATH):$(abspath ./utils)
 
 test:
 	mkdir -p $(BUILD_DIR)
-	mill -i -j 0 __.test
+	utils/mill -i -j 0 __.test
 
 verilog:
 	mkdir -p $(BUILD_DIR)
-	mill -i -j 0 __.test.runMain Elaborate -td $(BUILD_DIR)
+	utils/mill -i -j 0 __.test.runMain Elaborate -td $(BUILD_DIR)
 
 help:
-	mill -i __.test.runMain Elaborate --help
+	utils/mill -i __.test.runMain Elaborate --help
 
 compile:
-	mill -i -j 0 __.compile
+	utils/mill -i -j 0 __.compile
 
 bsp:
-	mill -i -j 0 mill.bsp.BSP/install
+	utils/mill -i -j 0 mill.bsp.BSP/install
 
 reformat:
-	mill -i -j 0 __.reformat
+	utils/mill -i -j 0 __.reformat
 
 checkformat:
-	mill -i -j 0 __.checkFormat
+	utils/mill -i -j 0 __.checkFormat
 
 doc:
-	mill -j 0 show __.docJar
+	utils/mill -j 0 show __.docJar
 
 clean:
 	-rm -rf $(BUILD_DIR)

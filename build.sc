@@ -2,8 +2,7 @@
 import mill._
 import mill.scalalib._
 import mill.scalalib.scalafmt.ScalafmtModule
-import mill.scalalib.TestModule.Utest
-import mill.scalalib.ScalaModule
+import mill.scalalib._
 // support BSP
 import mill.bsp._
 
@@ -22,7 +21,7 @@ object chipware extends ScalaModule with ScalafmtModule { m =>
   override def scalacPluginIvyDeps = Agg(
     ivy"org.chipsalliance:::chisel-plugin:5.0.0",
   )
-  object test extends Tests with Utest with ScalafmtModule {
+  object test extends ScalaTests with TestModule.Utest with ScalafmtModule {
     override def ivyDeps = m.ivyDeps() ++ Agg(
       ivy"com.lihaoyi::utest:0.8.1",
       ivy"edu.berkeley.cs::chiseltest:5.0-SNAPSHOT",
