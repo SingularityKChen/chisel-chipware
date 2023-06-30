@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class fp_sincos(
   sig_width:       Int = 33,
@@ -18,4 +20,18 @@ class fp_sincos(
   U1.io.sin_cos := io.sin_cos
   io.z          := U1.io.z
   io.status     := U1.io.status
+}
+
+object fp_sincos extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate fp_sincos") {
+      def top = new fp_sincos()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

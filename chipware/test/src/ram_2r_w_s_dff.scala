@@ -1,6 +1,8 @@
 // filename: ram_2r_w_s_dff.scala
 import chisel3._
 import chisel3.util.log2Ceil
+import circt.stage._
+import utest._
 
 class ram_2r_w_s_dff(val data_width: Int = 16, val depth: Int = 8, val rst_mode: Int = 0) extends RawModule {
   val io = IO(new Bundle {
@@ -27,4 +29,18 @@ class ram_2r_w_s_dff(val data_width: Int = 16, val depth: Int = 8, val rst_mode:
   U1.io.data_in   := io.data_in
   io.data_rd1_out := U1.io.data_rd1_out
   io.data_rd2_out := U1.io.data_rd2_out
+}
+
+object ram_2r_w_s_dff extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate ram_2r_w_s_dff") {
+      def top = new ram_2r_w_s_dff()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

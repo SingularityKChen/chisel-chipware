@@ -1,5 +1,7 @@
 import chisel3._
-import chisel3.util._
+import chisel3.util.log2Ceil
+import circt.stage._
+import utest._
 
 class arbiter_rr(val num_req: Int = 4, val reg_output: Int = 1, val index_mode: Int = 0) extends RawModule {
   val io = IO(new Bundle {
@@ -25,4 +27,18 @@ class arbiter_rr(val num_req: Int = 4, val reg_output: Int = 1, val index_mode: 
   io.cw_arb_granted     := U1.io.cw_arb_granted
   io.cw_arb_grant       := U1.io.cw_arb_grant
   io.cw_arb_grant_index := U1.io.cw_arb_grant_index
+}
+
+object arbiter_rr extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate arbiter_rr") {
+      def top = new arbiter_rr()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

@@ -1,5 +1,7 @@
 // filename: bc_8.scala
 import chisel3._
+import circt.stage._
+import utest._
 
 class bc_8 extends RawModule {
   // Define ports with type annotations
@@ -33,4 +35,18 @@ class bc_8 extends RawModule {
   io.ic_input       := U1.io.ic_input
   io.data_out       := U1.io.data_out
   io.so             := U1.io.so
+}
+
+object bc_8 extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate bc_8") {
+      def top = new bc_8()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

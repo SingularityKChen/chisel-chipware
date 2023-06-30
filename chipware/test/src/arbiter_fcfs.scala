@@ -1,5 +1,7 @@
 import chisel3._
 import chisel3.util.log2Ceil
+import circt.stage._
+import utest._
 
 class arbiter_fcfs(val n: Int = 4, val park_mode: Int = 1, val park_index: Int = 0, val output_mode: Int = 1)
     extends RawModule {
@@ -29,4 +31,18 @@ class arbiter_fcfs(val n: Int = 4, val park_mode: Int = 1, val park_index: Int =
   io.locked      := U1.io.locked
   io.grant       := U1.io.grant
   io.grant_index := U1.io.grant_index
+}
+
+object arbiter_fcfs extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate arbiter_fcfs") {
+      def top = new arbiter_fcfs()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

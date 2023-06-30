@@ -1,4 +1,7 @@
 import chisel3._
+import chisel3.util.log2Ceil
+import circt.stage._
+import utest._
 
 class fp_addsub(
   sig_width:       Int = 23,
@@ -28,4 +31,18 @@ class fp_addsub(
   U1.io.op  := io.op
   io.z      := U1.io.z
   io.status := U1.io.status
+}
+
+object fp_addsub extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate fp_addsub") {
+      def top = new fp_addsub()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

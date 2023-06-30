@@ -1,6 +1,7 @@
 import chisel3._
+import circt.stage._
+import utest._
 
-// Chisel Module class
 class fp_div_seq(
   val sig_width:       Int = 23,
   val exp_width:       Int = 8,
@@ -52,4 +53,18 @@ class fp_div_seq(
   io.z        := U1.io.z
   io.status   := U1.io.status
   io.complete := U1.io.complete
+}
+
+object fp_div_seq extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate fp_div_seq") {
+      def top = new fp_div_seq()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

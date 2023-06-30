@@ -1,5 +1,7 @@
 // filename: bc_9.scala
 import chisel3._
+import circt.stage._
+import utest._
 
 class bc_9 extends RawModule {
   val io = IO(new Bundle {
@@ -31,4 +33,18 @@ class bc_9 extends RawModule {
   U1.io.output_data := io.output_data
   io.data_out       := U1.io.data_out
   io.so             := U1.io.so
+}
+
+object bc_9 extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate bc_9") {
+      def top = new bc_9()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

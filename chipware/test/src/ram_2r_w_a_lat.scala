@@ -1,5 +1,7 @@
 import chisel3._
 import chisel3.util.log2Ceil
+import circt.stage._
+import utest._
 
 class ram_2r_w_a_lat(val data_width: Int = 16, val depth: Int = 8, val rst_mode: Int = 0) extends RawModule {
   // Define ports with type annotations
@@ -28,4 +30,18 @@ class ram_2r_w_a_lat(val data_width: Int = 16, val depth: Int = 8, val rst_mode:
   U0.io.data_in   := io.data_in
   io.data_rd1_out := U0.io.data_rd1_out
   io.data_rd2_out := U0.io.data_rd2_out
+}
+
+object ram_2r_w_a_lat extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate ram_2r_w_a_lat") {
+      def top = new ram_2r_w_a_lat()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

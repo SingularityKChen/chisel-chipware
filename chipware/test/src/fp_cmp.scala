@@ -1,11 +1,9 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class fp_cmp(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compliance: Int = 1, val quieten_nans: Int = 1)
     extends RawModule {
-  require(sig_width >= 2 && sig_width <= 253, "sig_width must be between 2 and 253")
-  require(exp_width >= 3 && exp_width <= 31, "exp_width must be between 3 and 31")
-  require(ieee_compliance == 0 || ieee_compliance == 1, "ieee_compliance must be 0 or 1")
-  require(quieten_nans == 1, "quieten_nans must be 1")
   val io = IO(new Bundle {
     val a:         UInt = Input(UInt((sig_width + exp_width + 1).W))
     val b:         UInt = Input(UInt((sig_width + exp_width + 1).W))
@@ -35,4 +33,18 @@ class fp_cmp(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_complianc
   io.altb      := U1.io.altb
   io.aeqb      := U1.io.aeqb
   io.unordered := U1.io.unordered
+}
+
+object fp_cmp extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate fp_cmp") {
+      def top = new fp_cmp()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

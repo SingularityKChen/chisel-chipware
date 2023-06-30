@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class fp_div(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compliance: Int = 1) extends RawModule {
   val io = IO(new Bundle {
@@ -15,4 +17,18 @@ class fp_div(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_complianc
   U1.io.rnd := io.rnd
   io.status := U1.io.status
   io.z      := U1.io.z
+}
+
+object fp_div extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate fp_div") {
+      def top = new fp_div()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

@@ -1,4 +1,7 @@
 import chisel3._
+import chisel3.util.log2Ceil
+import circt.stage._
+import utest._
 
 class b10b_enc(
   val bytes:       Int = 2,
@@ -32,4 +35,18 @@ class b10b_enc(
   U1.io.enable      := io.enable
   io.rd             := U1.io.rd
   io.data_out       := U1.io.data_out
+}
+
+object b10b_enc extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate b10b_enc") {
+      def top = new b10b_enc()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

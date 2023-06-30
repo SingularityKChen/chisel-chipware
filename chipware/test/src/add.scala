@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class add(val wA: Int = 4) extends RawModule {
   require(wA >= 1, "wA must be >= 1")
@@ -15,4 +17,18 @@ class add(val wA: Int = 4) extends RawModule {
   U1.io.CI := io.CI
   io.Z     := U1.io.Z
   io.CO    := U1.io.CO
+}
+
+object add extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate add") {
+      def top = new add()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

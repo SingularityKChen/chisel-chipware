@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class fp_recip(
   val sig_width:       Int = 23,
@@ -19,4 +21,18 @@ class fp_recip(
   U1.io.rnd := io.rnd
   io.status := U1.io.status
   io.z      := U1.io.z
+}
+
+object fp_recip extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate fp_recip") {
+      def top = new fp_recip()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

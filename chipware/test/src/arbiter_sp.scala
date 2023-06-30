@@ -1,5 +1,7 @@
 import chisel3._
 import chisel3.util.log2Ceil
+import circt.stage._
+import utest._
 
 // Define a parameterized Chisel Module
 class arbiter_sp(val n: Int, val park_mode: Int, val park_index: Int, val output_mode: Int) extends RawModule {
@@ -33,4 +35,18 @@ class arbiter_sp(val n: Int, val park_mode: Int, val park_index: Int, val output
   io.locked      := U1.io.locked
   io.grant       := U1.io.grant
   io.grant_index := U1.io.grant_index
+}
+
+object arbiter_sp extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate arbiter_sp") {
+      def top = new arbiter_sp(2, 0, 0, 0)
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }
