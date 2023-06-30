@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class mult_dx(val width: Int = 16, val p1_width: Int = 8) extends RawModule {
   val io = IO(new Bundle {
@@ -14,4 +16,18 @@ class mult_dx(val width: Int = 16, val p1_width: Int = 8) extends RawModule {
   U1.io.tc   := io.tc
   U1.io.dplx := io.dplx
   io.product := U1.io.product
+}
+
+object mult_dx extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate mult_dx") {
+      def top = new mult_dx()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

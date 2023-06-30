@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class multp(val a_width: Int = 8, val b_width: Int = 8, val out_width: Int = 18) extends RawModule {
   val io = IO(new Bundle {
@@ -15,4 +17,18 @@ class multp(val a_width: Int = 8, val b_width: Int = 8, val out_width: Int = 18)
   U1.io.tc := io.tc
   io.out0  := U1.io.out0
   io.out1  := U1.io.out1
+}
+
+object multp extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate multp") {
+      def top = new multp()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class mult_seq(
   val a_width:     Int = 3,
@@ -32,4 +34,18 @@ class mult_seq(
   U1.io.b     := io.b
   io.complete := U1.io.complete
   io.product  := U1.io.product
+}
+
+object mult_seq extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate mult_seq") {
+      def top = new mult_seq()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

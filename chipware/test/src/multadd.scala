@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class multadd(val wA: Int = 8, val wB: Int = 8, val wC: Int = 16, val wZ: Int = 16) extends RawModule {
   require(wA >= 1, "wA must be >= 1")
@@ -18,4 +20,18 @@ class multadd(val wA: Int = 8, val wB: Int = 8, val wC: Int = 16, val wZ: Int = 
   U1.io.C  := io.C
   U1.io.TC := io.TC
   io.Z     := U1.io.Z
+}
+
+object multadd extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate multadd") {
+      def top = new multadd()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

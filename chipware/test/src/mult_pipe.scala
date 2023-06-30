@@ -1,4 +1,6 @@
 import chisel3._
+import circt.stage._
+import utest._
 
 class mult_pipe(
   val a_width:     Int = 2,
@@ -30,4 +32,18 @@ class mult_pipe(
   U1.io.a     := io.a
   U1.io.b     := io.b
   io.product  := U1.io.product
+}
+
+object mult_pipe extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate mult_pipe") {
+      def top = new mult_pipe()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }

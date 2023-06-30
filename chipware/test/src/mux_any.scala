@@ -1,28 +1,7 @@
 import chisel3._
+import circt.stage._
+import utest._
 
-/**
-  * == mux_any ==
-  *
-  * === Parameters ===
-  *
-  * | Parameter  | Legal Range  | Default  | Description  |
-  * |---------------|--------------|--------------|----------------|
-  * | wA            | >=1            | 8               | Width of A input |
-  * | wS            | >=1            | 2               | Width of S input |
-  * | wZ            | >=1            | 2               | Width of Z output |
-  *
-  * === Ports ===
-  *
-  * | Name  | Width  | Direction | Description  |
-  * |--------|------------|-----------|------------------------|
-  * | A        | wA            | Input      | Data input |
-  * | S        | wS            | Input      | Select input |
-  * | Z        | wZ            | Output    | Data output |
-  *
-  * @param wA Width of A input
-  * @param wS Width of S input
-  * @param wZ Width of Z output
-  */
 class mux_any(val wA: Int = 8, val wS: Int = 2, val wZ: Int = 2) extends RawModule {
   val io = IO(new Bundle {
     val A: UInt = Input(UInt(wA.W))
@@ -33,4 +12,18 @@ class mux_any(val wA: Int = 8, val wS: Int = 2, val wZ: Int = 2) extends RawModu
   U1.io.A := io.A
   U1.io.S := io.S
   io.Z    := U1.io.Z
+}
+
+object mux_any extends TestSuite {
+  val tests: Tests = Tests {
+    test("should instantiate mux_any") {
+      def top = new mux_any()
+
+      val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
+      (new ChiselStage).execute(
+        args        = Array("--target-dir", "./build"),
+        annotations = generator :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
+      )
+    }
+  }
 }
