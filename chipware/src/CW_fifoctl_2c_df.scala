@@ -100,7 +100,7 @@ class CW_fifoctl_2c_df(
   require(ram_depth >= 2 && ram_depth <= 1024, "ram_depth must be in range [2, 1024]")
   require(mem_mode == 0, "mem_mode must be 0")
   require(f_sync_type >= 0 && f_sync_type <= 4, "f_sync_type must be in range [0, 4]")
-  require(r_sync_type == 0, "r_sync_type must be 0")
+  require(r_sync_type >= 0 && r_sync_type <= 4, "r_sync_type must be in range [0, 4]")
   require(clk_ratio == 1, "clk_ratio must be 1")
   require(ram_re_ext == 0, "ram_re_ext must be 0")
   require(err_mode == 0 || err_mode == 1, "err_mode must be 0 or 1")

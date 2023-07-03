@@ -4,19 +4,20 @@ import circt.stage._
 import utest._
 
 class fifoctl_cache(val width: Int = 8, val cache_depth: Int = 3) extends RawModule {
-
+  protected val word_count_width: Int = if (cache_depth > 1) 2 else 1
   val io = IO(new Bundle {
-    val rst_d_n:                  Bool  = Input(Bool()) // destination asynchronous reset
-    val init_d_n:                 Bool  = Input(Bool()) // destination synchronous reset
-    val clk_d:                    Clock = Input(Clock()) // destination clock
-    val user_pop_d_n:             Bool  = Input(Bool()) // destination user (read) pop request
-    val data_d:                   UInt  = Output(UInt(width.W)) // destination pop data
-    val cache_pop_d_n:            Bool  = Output(Bool()) // cache pop_req_n -> destination ptr_gen
-    val rd_data_d:                UInt  = Input(UInt(width.W)) // ram data interface
-    val flagRNE:                  Bool  = Input(Bool()) // flag - RAM not Empty
-    val flagRNEP:                 Bool  = Input(Bool()) // flag - RAM not Empty Pending
-    val cache_word_count_next:    UInt  = Input(UInt()) // unregistered number of word locations
-    val cache_encoded_word_count: UInt  = Output(UInt()) // registered and encoded number of word locations
+    val rst_d_n:               Bool  = Input(Bool()) // destination asynchronous reset
+    val init_d_n:              Bool  = Input(Bool()) // destination synchronous reset
+    val clk_d:                 Clock = Input(Clock()) // destination clock
+    val user_pop_d_n:          Bool  = Input(Bool()) // destination user (read) pop request
+    val data_d:                UInt  = Output(UInt(width.W)) // destination pop data
+    val cache_pop_d_n:         Bool  = Output(Bool()) // cache pop_req_n -> destination ptr_gen
+    val rd_data_d:             UInt  = Input(UInt(width.W)) // ram data interface
+    val flagRNE:               Bool  = Input(Bool()) // flag - RAM not Empty
+    val flagRNEP:              Bool  = Input(Bool()) // flag - RAM not Empty Pending
+    val cache_word_count_next: UInt  = Input(UInt(word_count_width.W)) // unregistered number of word locations
+    val cache_encoded_word_count: UInt =
+      Output(UInt(word_count_width.W)) // registered and encoded number of word locations
   })
 
   protected val U1: CW_fifoctl_cache = Module(new CW_fifoctl_cache(width, cache_depth))
