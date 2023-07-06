@@ -18,7 +18,7 @@ class ashiftr(wA: Int = 2, wSH: Int = 1) extends RawModule {
 object ashiftr extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate ashiftr") {
-      def top = new ashiftr()
+      def top = new ashiftr(2, 1)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

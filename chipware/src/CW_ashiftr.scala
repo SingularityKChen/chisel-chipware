@@ -43,7 +43,7 @@ import chisel3.experimental._ // To enable experimental features
 
 class CW_ashiftr(val wA: Int = 2, val wSH: Int = 1) extends BlackBox(Map("wA" -> wA, "wSH" -> wSH)) {
   require(wA >= 2, "wA must be >= 2")
-  require(Range(1, log2Ceil(wA)).contains(wSH), "wSH should in range [1, log2Ceil(wA))")
+  require(Range(1, log2Ceil(wA) + 1).contains(wSH), f"wSH ${wSH} should in range [1, log2Ceil(${wA})]")
   val io = IO(new Bundle {
     val A:  UInt = Input(UInt(wA.W))
     val SH: UInt = Input(UInt(wSH.W))
