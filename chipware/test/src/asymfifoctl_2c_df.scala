@@ -162,13 +162,13 @@ object asymfifoctl_2c_df extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate asymfifoctl_2c_df") {
       def top = new asymfifoctl_2c_df(
-        data_s_width = 32,
-        data_d_width = 32,
-        ram_depth    = 1024,
-        mem_mode     = 0,
-        arch_type    = 0,
-        f_sync_type  = 0,
-        r_sync_type  = 0,
+        data_s_width = 16,
+        data_d_width = 8,
+        ram_depth    = 8,
+        mem_mode     = 3,
+        arch_type    = 1,
+        f_sync_type  = 2,
+        r_sync_type  = 2,
         byte_order   = 0,
         flush_value  = 0,
         clk_ratio    = 1,

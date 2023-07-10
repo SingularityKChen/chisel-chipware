@@ -5,6 +5,10 @@ import chisel3.util.log2Ceil
 /**
   * == CW_asymfifoctl_s1_df ==
   *
+  * === Abstract ===
+  *
+  * Asym. I/O Synch. (One Clock) FIFO Controller - Dynamic Flags
+  *
   * === Parameters ===
   *
   * | Parameter  | Legal Range  | Default  | Description  |

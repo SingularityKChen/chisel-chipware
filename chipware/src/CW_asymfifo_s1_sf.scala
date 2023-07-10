@@ -5,6 +5,10 @@ import chisel3.util._
 /**
   * == CW_asymfifo_s1_sf ==
   *
+  * === Abstract ===
+  *
+  * Asym. I/O Synch. (Single Clock) FIFO Controller - Static Flags
+  *
   * === Parameters ===
   *
   * | Parameter  | Legal Range  | Default  | Description  |
@@ -12,10 +16,10 @@ import chisel3.util._
   * | data_in_width  | 1 to 256  | 4  | Width of the data_in bus. Values for data_in_width must be integer-multiple relationship with data_out_width. That is,either data_in_width = K × data_out_width, or data_out_width= K ×  data_in_width, where K is an integer. |
   * | data_out_width  | 1 to 256  | 16  | Width of the data_out bus. data_out_width must be in an integer-multiple relationship with data_in_width. That is, either data_in_width = K × data_out_width, or data_out_width = K ×  data_in_width, where K is an integer. |
   * | depth  | 2 to 256  | 10  | Number of memory elements used in FIFO (used to size the address ports) Default: 4 |
-  * | ae_level  | 1 to depth ­ 1  | 1  | Almost empty level (the number of words in the FIFO at or below which the almost_empty flag is active) Default: 1 |
-  * | af_level  | 1 to depth ­ 1  | 9  | Almost full level (the number of empty memory locations in the FIFO at which the this flag is active. Default: 1 |
+  * | ae_level  | 1 to depth - 1  | 1  | Almost empty level (the number of words in the FIFO at or below which the almost_empty flag is active) Default: 1 |
+  * | af_level  | 1 to depth - 1  | 9  | Almost full level (the number of empty memory locations in the FIFO at which the this flag is active. Default: 1 |
   * | err_mode  | 0 to 2  | 2  | Error mode Default: 1 0 = underflow/overflow and pointer latched checking, 1 = underflow/overflow latched checking, 2 = underflow/overflow unlatched checking |
-  * | rst_mode  | 0 or 3  | 1  | Reset mode Default: 0 0 = asynchronous reset, 1 = synchronous reset |
+  * | rst_mode  | 0 or 1  | 1  | Reset mode Default: 0 0 = asynchronous reset, 1 = synchronous reset |
   * | byte_order  | 0 or 1  | 0  | Order of bytes or subword within a word Default : 0 0 = first byte is in most significant bits position; 1 = first byte is in the least significant bits position). |
   *
   * === Ports ===
@@ -75,7 +79,7 @@ class CW_asymfifo_s1_sf(
   require(ae_level >= 1 && ae_level <= depth - 1, "ae_level must be in range [1, depth - 1]")
   require(af_level >= 1 && af_level <= depth - 1, "af_level must be in range [1, depth - 1]")
   require(err_mode >= 0 && err_mode <= 2, "err_mode must be in range [0, 2]")
-  require(rst_mode == 0 || rst_mode == 3, "rst_mode must be either 0 or 3")
+  require(rst_mode == 0 || rst_mode == 1, "rst_mode must be either 0 or 1")
   require(byte_order == 0 || byte_order == 1, "byte_order must be either 0 or 1")
 
   val io = IO(new Bundle {
