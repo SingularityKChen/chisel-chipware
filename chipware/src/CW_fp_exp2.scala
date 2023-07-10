@@ -3,9 +3,13 @@ import chisel3.experimental._
 
 // ScalaDoc before the definition of the Chisel BlackBox class
 /**
-  * === CW_fp_exp2 ===
+  * == CW_fp_exp2 ==
   *
-  * ==== Parameters ====
+  * === Abstract ===
+  *
+  * Floating Point Base-2 Exponential
+  *
+  * === Parameters ===
   *
   * | Parameter         | Legal Range           | Default | Description                                                                 |
   * |-------------------|-----------------------|---------|-----------------------------------------------------------------------------|
@@ -15,7 +19,7 @@ import chisel3.experimental._
   * |                   |                       |         | including the use of denormals and NaNs.                                    |
   * | arch              | 0 or 1                |         |                                                                             |
   *
-  * ==== Ports ====
+  * === Ports ===
   *
   * | Name    | Width                    | Direction | Description       |
   * |---------|--------------------------|-----------|-------------------|

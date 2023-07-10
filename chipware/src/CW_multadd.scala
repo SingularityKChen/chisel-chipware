@@ -4,6 +4,10 @@ import chisel3.experimental._
 /**
   * == CW_multadd ==
   *
+  * === Abstract ===
+  *
+  * Multiplier-Adder
+  *
   * === Parameters ===
   *
   * | Parameter  | Legal Range  | Default  | Description  |

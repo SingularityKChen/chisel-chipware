@@ -3,7 +3,11 @@ import chisel3.util._
 import chisel3.experimental._
 
 /**
-  * CW_fifoctl_s2_sf
+  * == CW_fifoctl_s2_sf ==
+  *
+  * === Abstract ===
+  *
+  * Syncchronous (Dual-Clock) FIFO controller with Static Flags.
   *
   * === Parameters ===
   *

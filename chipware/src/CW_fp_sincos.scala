@@ -6,7 +6,7 @@ import chisel3.experimental._ // To enable experimental features
   *
   * === Abstract ===
   *
-  * ...
+  * Floating-Point Sine and Cosine
   *
   * === Parameters ===
   *

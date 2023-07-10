@@ -4,6 +4,10 @@ import chisel3.experimental._
 /**
   * == CW_mux_any ==
   *
+  * === Abstract ===
+  *
+  * Generalized Multibit Selection
+  *
   * === Parameters ===
   *
   * | Parameter  | Legal Range  | Default  | Description  |

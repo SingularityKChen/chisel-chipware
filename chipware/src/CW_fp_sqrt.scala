@@ -6,7 +6,7 @@ import chisel3.experimental._
   *
   * === Abstract ===
   *
-  * ...
+  * Floating-Point Square Root
   *
   * === Parameters ===
   *

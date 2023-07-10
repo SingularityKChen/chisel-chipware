@@ -4,6 +4,10 @@ import chisel3.experimental._
 /**
   * == CW_ash ==
   *
+  * === Abstract ===
+  *
+  * General Purpose Arithmetic Shifter
+  *
   * === Parameters ===
   *
   * | Parameter  | Legal Range  | Default  | Description  |

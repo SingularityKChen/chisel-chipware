@@ -3,7 +3,11 @@ import chisel3.experimental._
 import chisel3.util.log2Ceil
 
 /**
-  *  CW_asymfifoctl_s2_sf
+  *  == CW_asymfifoctl_s2_sf ==
+  *
+  *  === Abstract ===
+  *
+  *  Asym. Synch. (Dual-Clock) FIFO Controller - Static Flags
   *
   *  === Parameters ===
   *
@@ -67,7 +71,6 @@ import chisel3.util.log2Ceil
   *  @param rst_mode Reset mode 0 = asynchronous reset, 1 = synchronous reset)
   *  @param byte_order Order of bytes or subword within a word Default: 0 0 = first byte is in most significant bits position; 1 = first byte is in the least significant bits position
   */
-
 class CW_asymfifoctl_s2_sf(
   val data_in_width:  Int = 3,
   val data_out_width: Int = 12,

@@ -3,9 +3,14 @@ import chisel3.util._
 import chisel3.experimental._ // To enable experimental features
 
 /**
-  * CW_arbiter_sp
+  * == CW_arbiter_sp ==
+  *
+  * === Abstract ===
+  *
+  *  Arbiter with static priority scheme
   *
   * === Parameters ===
+  *
   * | Parameter | Values           | Description                           |
   * | ---       | ---              | ---                                   |
   * | n         | 2 to 32 (def:4)  | Number of requesters                  |
@@ -14,6 +19,7 @@ import chisel3.experimental._ // To enable experimental features
   * | output_mode| 0 or 1  (def:1)  | Include output registers              |
   *
   * === Ports ===
+  *
   * | Port       | Width      | Direction | Function                              |
   * | ---        | ---        | ---       | ---                                   |
   * | clk        | 1          | Input     | Input clock                           |

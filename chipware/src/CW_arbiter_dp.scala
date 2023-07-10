@@ -3,11 +3,13 @@ import chisel3.util.log2Ceil
 import chisel3.experimental._ // To enable experimental features
 
 /**
-  * === CW_arbiter_dp ===
+  * == CW_arbiter_dp ==
   *
-  * Cadence ChipWare IP: CW_arbiter_dp
+  * === Abstract ===
   *
-  * ==== Parameters ====
+  * Arbiter with Dynamic priority scheme
+  *
+  * === Parameters ===
   * | Parameter   | Legal Values      | Description                  |
   * |-------------|-------------------|------------------------------|
   * | n           | 2 to 32 (def:4)   | Number of requesters         |
@@ -15,7 +17,7 @@ import chisel3.experimental._ // To enable experimental features
   * | park_index  | 0 to n-1(def:0)   | Index of requester for parking|
   * | output_mode | 0 or 1  (def:1)   | Include output registers     |
   *
-  * ==== Ports ====
+  * === Ports ===
   * | Port         | Bit Width              | Direction | Function                                  |
   * |--------------|------------------------|-----------|-------------------------------------------|
   * | clk          | 1                      | Input     | Input clock                               |

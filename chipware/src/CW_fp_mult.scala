@@ -2,7 +2,11 @@ import chisel3._
 import chisel3.experimental._ // To enable experimental features
 
 /**
-  * CW_fp_mult
+  *  == CW_fp_mult ==
+  *
+  *  === Abstract ===
+  *
+  * Floating Point Multiplier
   *
   * === Parameters ===
   * | Parameter       | Description                                                                     |

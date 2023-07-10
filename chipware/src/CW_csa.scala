@@ -7,7 +7,7 @@ import chisel3.util._
   *
   * === Abstract ===
   *
-  * ...
+  * Carry Save Adder
   *
   * === Parameters ===
   *

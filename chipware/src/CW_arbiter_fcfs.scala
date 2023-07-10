@@ -3,7 +3,11 @@ import chisel3.util.log2Ceil
 import chisel3.experimental._ // To enable experimental features
 
 /**
-  * CW_arbiter_fcfs
+  * == CW_arbiter_fcfs ==
+  *
+  * === Abstract ===
+  *
+  * Arbiter with First-Come-First-Serve priority scheme
   *
   * === Parameters ===
   *

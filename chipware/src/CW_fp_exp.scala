@@ -3,9 +3,13 @@ import chisel3.util.log2Ceil
 import chisel3.experimental._
 
 /**
-  * === CW_fp_exp ===
+  * == CW_fp_exp ==
   *
-  * ==== Parameters ====
+  * === Abstract ===
+  *
+  * Floating Point Natural Exponential
+  *
+  * === Parameters ===
   *
   * | Parameter        | Legal Range     | Default       | Description                        |
   * |------------------|-----------------|---------------|------------------------------------|
@@ -14,7 +18,7 @@ import chisel3.experimental._
   * | ieee_compliance  | 0 or 1          |               | When 1, the generated architecture is fully compliant with IEEE 754 standard including the use of denormals and NaNs. |
   * | arch             |                 |               |                                      |
   *
-  * ==== Ports ====
+  * === Ports ===
   *
   * | Name   | Width                       | Direction | Description            |
   * |--------|-----------------------------|-----------|------------------------|

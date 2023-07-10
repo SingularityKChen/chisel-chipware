@@ -4,6 +4,10 @@ import chisel3.experimental._
 /**
   * == CW_multp ==
   *
+  * === Abstract ===
+  *
+  * Partial Product Multiplier
+  *
   * === Parameters ===
   *
   * | Parameter  | Legal Range  | Default  | Description  |

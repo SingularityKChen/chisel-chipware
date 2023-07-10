@@ -3,7 +3,11 @@ import chisel3.util._
 import chisel3.experimental._ // To enable experimental features
 
 /**
-  * CW_arbiter_rr - Arbiter with Round Robin priority scheme
+  * == CW_arbiter_rr ==
+  *
+  * === Abstract ===
+  *
+  *  Arbiter with Round Robin priority scheme
   *
   * === Parameters ===
   *

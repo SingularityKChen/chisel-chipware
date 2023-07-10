@@ -3,7 +3,11 @@ import chisel3.util._
 import chisel3.experimental._ // To enable experimental features
 
 /**
-  * CW_arbiter_2t - Two Tier Arbiter with dynamic/fair among equal scheme
+  * == CW_arbiter_2t ==
+  *
+  * === Abstract ===
+  *
+  * Two Tier Arbiter with dynamic/fair among equal scheme
   *
   * === Parameters ===
   * | Name       | Values           | Description                                                          |

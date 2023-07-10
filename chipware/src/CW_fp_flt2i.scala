@@ -3,9 +3,13 @@ import chisel3.experimental._
 
 // ScalaDoc before the definition of the Chisel BlackBox class
 /**
-  * === CW_fp_flt2i ===
+  * == CW_fp_flt2i ==
   *
-  * ==== Parameters ====
+  * === Abstract ===
+  *
+  * Floating Point to Integer Converter
+  *
+  * === Parameters ===
   *
   * | Parameter         | Legal Range           | Default | Description                                                                 |
   * |-------------------|-----------------------|---------|-----------------------------------------------------------------------------|
@@ -14,7 +18,7 @@ import chisel3.experimental._
   * | isize             | 3 to 512 bits         |         | Word length of integer number z.                                             |
   * | ieee_compliance   | 0 or 1                |         | When 1, the generated architecture recognizes denormal Infinity and NaNs.    |
   *
-  * ==== Ports ====
+  * === Ports ===
   *
   * | Name    | Width                    | Direction | Description       |
   * |---------|--------------------------|-----------|-------------------|

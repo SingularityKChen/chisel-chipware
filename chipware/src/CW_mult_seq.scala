@@ -4,6 +4,11 @@ import chisel3.experimental._
 /**
   * == CW_mult_seq ==
   *
+  * === Abstract ===
+  *
+  * CW_mult_seq is a sequential multiplier designed for low area, area-time trade-off, or high frequency
+  * (small cycle time) applications.
+  *
   * === Parameters ===
   *
   * | Parameter  | Legal Range  | Default  | Description  |
