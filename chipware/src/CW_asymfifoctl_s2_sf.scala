@@ -11,52 +11,52 @@ import chisel3.util.log2Ceil
   *
   *  === Parameters ===
   *
-  *  | Parameter  | Legal Range  | Default  | Description  |
-  *  |---------------|--------------|--------------|----------------|
-  *  | data_in_width  | 1 to 256 | 3 | Width of the data_in bus. data_in_width must be in an integer-multiple relationship with data_out_width. That is, either data_in_width = K x data_out_width, or data_out_width = K x data_in_width, where K is an integer. |
-  *  | data_out_width  | 1 to 256 | 12 | Width of the data_out bus. data_out_width must be in an integer-multiple relationship with data_in_width. That is, either data_in_width = K x data_out_width, or data_out_width = K x data_in_width, where K is an integer. |
-  *  | depth  | 4 to 224 | 8 | Number of words that can be stored in FIFO |
-  *  | push_ae_lvl  | 1 to depth - 1 | 2 | Almost empty level for the push_ae output port (the number of words in the FIFO at or below which the push_ae flag is active) |
-  *  | push_af_lvl  | 1 to depth - 1 | 2 | Almost full level for the push_af output port (the number of empty memory locations in the FIFO at which the push_af flag is active) |
-  *  | pop_ae_lvl  | 1 to depth - 1 | 2 | Almost empty level for the pop_ae output port (the number of words in the FIFO at or below which the pop_ae flag is active) |
-  *  | pop_af_lvl  | 1 to depth - 1 | 2 | Almost full level for the pop_af output port (the number of empty memory locations in the FIFO at which the pop_af flag is active) |
-  *  | err_mode  | 0 or 1 | 0 | Error mode 0 = stays active until reset [latched], 1 = active only as long as error condition exists [unlatched]) |
-  *  | push_sync  | 0 to 4 | 2 | Push flag synchronization mode Default: 2 0 = single clock design no synchronization mechanism is implemented 1 = 2-sample synchronizer 1st sample neg-edge 2nd sample pos-edge 2 = 2-sample synchronizer both sample pos-edge 3 = 3-stage synchronizer all samples pos-edge 4 = 4-stage synchronizer all samples pos-edge |
-  *  | pop_sync  | 0 to 4 | 2 | Pop flag synchronization mode Default: 2 0 = single clock design no synchronization mechanism is implemented 1 = 2-sample synchronizer 1st sample neg-edge 2nd sample pos-edge 2 = 2-sample synchronizer both sample pos-edge 3 = 3-stage synchronizer all samples pos-edge 4 = 4-stage synchronizer all samples pos-edge |
-  *  | rst_mode  | 0 or 1 | 0 | Reset mode 0 = asynchronous reset, 1 = synchronous reset) |
-  *  | byte_order  | 0 or 1 | 0 | Order of bytes or subword within a word Default: 0 0 = first byte is in most significant bits position; 1 = first byte is in the least significant bits position |
+  * | Parameter  | Legal Range  | Default  | Description  |
+  * |---------------|--------------|--------------|----------------|
+  * | data_in_width  | 1 to 256 | 3 | Width of the data_in bus. data_in_width must be in an integer-multiple relationship with data_out_width. That is, either data_in_width = K x data_out_width, or data_out_width = K x data_in_width, where K is an integer. |
+  * | data_out_width  | 1 to 256 | 12 | Width of the data_out bus. data_out_width must be in an integer-multiple relationship with data_in_width. That is, either data_in_width = K x data_out_width, or data_out_width = K x data_in_width, where K is an integer. |
+  * | depth  | 4 to 224 | 8 | Number of words that can be stored in FIFO |
+  * | push_ae_lvl  | 1 to depth - 1 | 2 | Almost empty level for the push_ae output port (the number of words in the FIFO at or below which the push_ae flag is active) |
+  * | push_af_lvl  | 1 to depth - 1 | 2 | Almost full level for the push_af output port (the number of empty memory locations in the FIFO at which the push_af flag is active) |
+  * | pop_ae_lvl  | 1 to depth - 1 | 2 | Almost empty level for the pop_ae output port (the number of words in the FIFO at or below which the pop_ae flag is active) |
+  * | pop_af_lvl  | 1 to depth - 1 | 2 | Almost full level for the pop_af output port (the number of empty memory locations in the FIFO at which the pop_af flag is active) |
+  * | err_mode  | 0 or 1 | 0 | Error mode 0 = stays active until reset [latched], 1 = active only as long as error condition exists [unlatched]) |
+  * | push_sync  | 0 to 4 | 2 | Push flag synchronization mode Default: 2 0 = single clock design no synchronization mechanism is implemented 1 = 2-sample synchronizer 1st sample neg-edge 2nd sample pos-edge 2 = 2-sample synchronizer both sample pos-edge 3 = 3-stage synchronizer all samples pos-edge 4 = 4-stage synchronizer all samples pos-edge |
+  * | pop_sync  | 0 to 4 | 2 | Pop flag synchronization mode Default: 2 0 = single clock design no synchronization mechanism is implemented 1 = 2-sample synchronizer 1st sample neg-edge 2nd sample pos-edge 2 = 2-sample synchronizer both sample pos-edge 3 = 3-stage synchronizer all samples pos-edge 4 = 4-stage synchronizer all samples pos-edge |
+  * | rst_mode  | 0 or 1 | 0 | Reset mode 0 = asynchronous reset, 1 = synchronous reset) |
+  * | byte_order  | 0 or 1 | 0 | Order of bytes or subword within a word Default: 0 0 = first byte is in most significant bits position; 1 = first byte is in the least significant bits position |
   *
   *  === Ports ===
   *
-  *  | Name  | Width  | Direction | Description  |
-  *  |--------|------------|-----------|------------------------|
-  *  | clk_push | 1 bit | Input | Input clock for push interface |
-  *  | clk_pop | 1 bit | Input | Input clock for pop interface |
-  *  | rst_n | 1 bit | Input | Reset input, active low |
-  *  | push_req_n | 1 bit | Input | FIFO push request, active low |
-  *  | flush_n | 1 bit | Input | Flushes the partial word into memory (fills in 0's) (for data_in_width < data_out_width only) |
-  *  | pop_req_n | 1 bit | Input | FIFO pop request, active low |
-  *  | data_in | data_in_width bit(s) | Input | FIFO data to push |
-  *  | rd_data | max(data_in_width, data_out_width) bit(s) | Input | RAM data input to FIFO controller |
-  *  | we_n | 1 bit | Output | Write enable output for write port of RAM, active low |
-  *  | push_empty | 1 bit | Output | FIFO empty a output flag synchronous to clk_push, active high |
-  *  | push_ae | 1 bit | Output | FIFO almost emptya output flag synchronous to clk_push, active high (determined by push_ae_lvl parameter) |
-  *  | push_hf | 1 bit | Output | FIFO half fulla output flag synchronous to clk_push, active high |
-  *  | push_af | 1 bit | Output | FIFO almost fulla output flag synchronous to clk_push, active high (determined by push_af_lvl parameter) |
-  *  | push_full | 1 bit | Output | FIFO's RAM fulla output flag (including the input buffer of FIFO controller for data_in_width < data_out_width) synchronous to clk_push, active high |
-  *  | ram_full | 1 bit | Output | FIFO's RAM (excluding the input buffer of FIFO controller for data_in_width < data_out_width) full output flag synchronous to clk_push, active high |
-  *  | part_wd | 1 bit | Output | Partial word accumulated in the input buffer synchronous to clk_push, active high (for data_in_width < data_out_width only; otherwise, tied low) |
-  *  | push_error | 1 bit | Output | FIFO push error (overrun) output flag synchronous to clk_push, active high |
-  *  | pop_empty | 1 bit | Output | FIFO empty b output flag synchronous to clk_pop, active high |
-  *  | pop_ae | 1 bit | Output | FIFO almost emptyb output flag synchronous to clk_pop, active high (determined by pop_ae_lvl parameter) |
-  *  | pop_hf | 1 bit | Output | FIFO half fullb output flag synchronous to clk_pop, active high |
-  *  | pop_af | 1 bit | Output | FIFO almost fullb output flag synchronous to clk_pop, active high (determined by pop_af_lvl parameter) |
-  *  | pop_full | 1 bit | Output | FIFO's RAM fullb output flag (excluding the input buffer of FIFO controller for case data_in_width < data_out_width) synchronous to clk_pop, active high |
-  *  | pop_error | 1 bit | Output | FIFO pop error (underrun) output flag synchronous to clk_pop, active high |
-  *  | wr_data | max(data_in_width, data_out_width) bit(s) | Output | FIFO controller output data to RAM |
-  *  | wr_addr | ceil(log2[depth]) bit(s) | Output | Address output to write port of RAM |
-  *  | rd_addr | ceil(log2[depth]) bit(s) | Output | Address output to read port of RAM |
-  *  | data_out | data_out_width bit(s) | Output | FIFO data to pop |
+  * | Name  | Width  | Direction | Description  |
+  * |--------|------------|-----------|------------------------|
+  * | clk_push | 1 bit | Input | Input clock for push interface |
+  * | clk_pop | 1 bit | Input | Input clock for pop interface |
+  * | rst_n | 1 bit | Input | Reset input, active low |
+  * | push_req_n | 1 bit | Input | FIFO push request, active low |
+  * | flush_n | 1 bit | Input | Flushes the partial word into memory (fills in 0's) (for data_in_width < data_out_width only) |
+  * | pop_req_n | 1 bit | Input | FIFO pop request, active low |
+  * | data_in | data_in_width bit(s) | Input | FIFO data to push |
+  * | rd_data | max(data_in_width, data_out_width) bit(s) | Input | RAM data input to FIFO controller |
+  * | we_n | 1 bit | Output | Write enable output for write port of RAM, active low |
+  * | push_empty | 1 bit | Output | FIFO empty a output flag synchronous to clk_push, active high |
+  * | push_ae | 1 bit | Output | FIFO almost emptya output flag synchronous to clk_push, active high (determined by push_ae_lvl parameter) |
+  * | push_hf | 1 bit | Output | FIFO half fulla output flag synchronous to clk_push, active high |
+  * | push_af | 1 bit | Output | FIFO almost fulla output flag synchronous to clk_push, active high (determined by push_af_lvl parameter) |
+  * | push_full | 1 bit | Output | FIFO's RAM fulla output flag (including the input buffer of FIFO controller for data_in_width < data_out_width) synchronous to clk_push, active high |
+  * | ram_full | 1 bit | Output | FIFO's RAM (excluding the input buffer of FIFO controller for data_in_width < data_out_width) full output flag synchronous to clk_push, active high |
+  * | part_wd | 1 bit | Output | Partial word accumulated in the input buffer synchronous to clk_push, active high (for data_in_width < data_out_width only; otherwise, tied low) |
+  * | push_error | 1 bit | Output | FIFO push error (overrun) output flag synchronous to clk_push, active high |
+  * | pop_empty | 1 bit | Output | FIFO empty b output flag synchronous to clk_pop, active high |
+  * | pop_ae | 1 bit | Output | FIFO almost emptyb output flag synchronous to clk_pop, active high (determined by pop_ae_lvl parameter) |
+  * | pop_hf | 1 bit | Output | FIFO half fullb output flag synchronous to clk_pop, active high |
+  * | pop_af | 1 bit | Output | FIFO almost fullb output flag synchronous to clk_pop, active high (determined by pop_af_lvl parameter) |
+  * | pop_full | 1 bit | Output | FIFO's RAM fullb output flag (excluding the input buffer of FIFO controller for case data_in_width < data_out_width) synchronous to clk_pop, active high |
+  * | pop_error | 1 bit | Output | FIFO pop error (underrun) output flag synchronous to clk_pop, active high |
+  * | wr_data | max(data_in_width, data_out_width) bit(s) | Output | FIFO controller output data to RAM |
+  * | wr_addr | ceil(log2[depth]) bit(s) | Output | Address output to write port of RAM |
+  * | rd_addr | ceil(log2[depth]) bit(s) | Output | Address output to read port of RAM |
+  * | data_out | data_out_width bit(s) | Output | FIFO data to pop |
   *
   *  @param data_in_width Width of the data_in bus. data_in_width must be in an integer-multiple relationship with data_out_width. That is, either data_in_width = K x data_out_width, or data_out_width = K x data_in_width, where K is an integer.
   *  @param data_out_width Width of the data_out bus. data_out_width must be in an integer-multiple relationship with data_in_width. That is, either data_in_width = K x data_out_width, or data_out_width = K x data_in_width, where K is an integer.

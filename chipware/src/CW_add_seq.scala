@@ -2,35 +2,45 @@ import chisel3._
 import chisel3.experimental._ // To enable experimental features
 
 /**
-  * Adds the operand a and b to produce the sum in the number of clock cycles specified by the num_cyc parameter.
-  * Addition is initiated when start is asserted active high for 1 clk period. Output bus sum is valid when complete is asserted.
-  * If hold is asserted, then sum is held constant. Signal hold does not prevent a new sequence initiated by start.
+  * == CW_add_seq ==
   *
-  * Signal rst_n is synchronous for a CW_add_seq instantiation when the parameter rst_mode = 1.
-  * Sequential library cells with synchronous resets will be selected during mapping.
-  * Signal rst_n is asynchronous for CW_add_seq instantiation when parameter rst_mode = 0.
-  * Sequential cells with active low asynchronous reset will be used during synthesis.
+  * === Abstract ===
   *
-  * When the parameter input_mode = 0, the input data is not registered.
-  * When input_mode = 1, the input data is registered.
+  * CW_add_seq is a sequential adder designed for low area,
+  * area-time trade-off, or high frequency (small cycle time) applications.
   *
-  * When the parameter output_mode = 0, the output data is not registered.
-  * When output_mode = 1, the output data is registered.
+  * === Parameters ===
   *
-  * When the parameter early_start = 1, addition starts immediately after setting the start signal active high.
-  * When early_start = 0, it starts with one clock cycle delay after the start signal is asserted.
+  * | Parameter  | Legal Range  | Default  | Description  |
+  * |---------------|--------------|--------------|----------------|
+  * | a_width  | >=3  | 3 | Word length of a |
+  * | b_width  | >=3  | 3 | Word length of b |
+  * | num_cyc  | >=3 and <=(a_width or b_width) | 3 | User-defined number of clock cycles to produce a valid result. |
+  * | rst_mode  | 0 or 1 | 0 | Reset mode |
+  * | input_mode  | 0 or 1 | 1 | Registered inputs |
+  * | output_mode  | 0 or 1 | 1 | Registered outputs |
+  * | early_start  | 0 or 1 | 0 | Computation start |
   *
-  * Within the first num_cyc clock cycles immediately after reset conditions are released (rst_n =1),
-  * no start is initiated (that is, start remains 0) until the first assertion of complete (that is, complete =1).
-  * This first complete =1 following the reset might yield invalid results and should be disregarded.
+  * === Ports ===
   *
-  * @param a_width      Word size of input a
-  * @param b_width      Word size of input b
-  * @param num_cyc      Number of clock cycles to calculate the sum
-  * @param rst_mode     Reset mode, 0 for asynchronous and 1 for synchronous reset
-  * @param input_mode   Input mode, 0 for unregistered input and 1 for registered input
-  * @param output_mode  Output mode, 0 for unregistered output and 1 for registered output
-  * @param early_start  Early start mode, 0 for one clock cycle delay and 1 for immediate start after setting start signal high
+  * | Name  | Width  | Direction | Description  |
+  * |--------|------------|-----------|------------------------|
+  * | clk | 1 bit | Input | Clock |
+  * | rst_n | 1 bit | Input | Reset, active low |
+  * | hold | 1 bit | Input | Hold current operation (=1) |
+  * | start | 1 bit | Input | Start operation (=1). A new operation is started again by making start=1 for one clock cycle. |
+  * | a | a_width bit(s) | Input | Addend |
+  * | b | b_width bit(s) | Input | Addend |
+  * | complete | 1 bit | Output | Operation completed (=1) |
+  * | sum | a_width bit(s) | Output | Sum a + b |
+  *
+  * @param a_width Word length of a
+  * @param b_width Word length of b
+  * @param num_cyc User-defined number of clock cycles to produce a valid result.
+  * @param rst_mode Reset mode
+  * @param input_mode Registered inputs
+  * @param output_mode Registered outputs
+  * @param early_start Computation start
   */
 class CW_add_seq(
   val a_width:     Int = 3,

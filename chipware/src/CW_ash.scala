@@ -19,11 +19,11 @@ import chisel3.experimental._
   *
   * | Name  | Width  | Direction | Description  |
   * |--------|------------|-----------|------------------------|
-  * | A  | wA  | Input | ... |
-  * | DATA_TC  | 1  | Input | ... |
-  * | SH  | wSH  | Input | ... |
-  * | SH_TC  | 1  | Input | ... |
-  * | Z  | wA  | Output | ... |
+  * | A  | wA  | Input | Input data |
+  * | DATA_TC  | 1  | Input | 0 if A is unsigned or 1 if A is signed |
+  * | SH  | wSH  | Input | Shift amount |
+  * | SH_TC  | 1  | Input | 0 if SH is unsigned or 1 if SH is signed |
+  * | Z  | wA  | Output | Output result |
   *
   * @param wA  A input width and Z output width
   * @param wSH  SH input width
