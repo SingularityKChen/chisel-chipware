@@ -28,7 +28,13 @@ checkformat:
 doc:
 	utils/mill -j 0 show __.docJar
 
+build_docker:
+	docker build -f docker/Dockerfile -t chisel-playground:latest .
+
+run_docker: build_docker
+	docker run -it --rm -v $(shell pwd):/workspace/$(shell basename $$(pwd)) --workdir /workspace/$(shell basename $$(pwd)) chisel-playground:latest
+
 clean:
 	-rm -rf $(BUILD_DIR)
 
-.PHONY: test verilog help compile bsp reformat checkformat doc clean
+.PHONY: test verilog help compile bsp reformat checkformat doc build_docker run_docker clean

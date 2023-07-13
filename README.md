@@ -18,6 +18,20 @@ git submodule add git@github.com:SingularityKChen/chisel-chipware.git
 
 ```
 
+## Docker
+
+### Build the Docker Image
+
+```bash
+make build_docker
+```
+
+### Run the Docker Image
+
+```bash
+make run_docker
+```
+
 ## To develop this repo
 
 ### Install Mill
@@ -34,6 +48,12 @@ make bsp compile
 
 ```bash
 make doc
+```
+
+### Run the tests
+
+```bash
+make test
 ```
 
 # Thanks
