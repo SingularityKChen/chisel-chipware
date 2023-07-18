@@ -29,10 +29,10 @@ doc:
 	utils/mill -j 0 show __.docJar
 
 build_docker:
-	docker build -f docker/Dockerfile -t chisel-playground:latest .
+	docker build -f docker/Dockerfile -t chisel-chipware:latest .
 
 run_docker: build_docker
-	docker run -it --rm -v $(shell pwd):/workspace/$(shell basename $$(pwd)) --workdir /workspace/$(shell basename $$(pwd)) chisel-playground:latest
+	docker run -it --rm -v $(shell pwd):/workspace/$(shell basename $$(pwd)) --workdir /workspace/$(shell basename $$(pwd)) chisel-chipware:latest
 
 clean:
 	-rm -rf $(BUILD_DIR)

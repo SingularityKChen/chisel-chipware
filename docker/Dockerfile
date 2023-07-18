@@ -28,8 +28,21 @@ RUN ldconfig && \
 
 ENV LANG=C.UTF-8
 
-RUN pacman -Syu --noconfirm make parallel wget cmake ninja mill dtc verilator git llvm clang lld protobuf antlr4 python autoconf automake
+RUN pacman -Syu --noconfirm make parallel wget cmake ninja dtc verilator git llvm clang lld protobuf antlr4 python autoconf automake
 
 RUN pacman -Syu --noconfirm vim which
+
+# Download and install mill
+RUN curl -L https://github.com/com-lihaoyi/mill/releases/download/0.11.1/0.11.1 > mill && \
+    chmod +x mill && \
+    mv mill /usr/bin/mill
+
+# ivy development dependencies
+RUN git clone https://github.com/SingularityKChen/chisel-chipware.git && \
+    cd chisel-chipware && \
+    mill -i -j 0 __.compile && \
+    mill -i -j 0 __.reformat && \
+    cd .. && \
+    rm -rf chisel-chipware
 
 CMD ["/usr/bin/bash"]
