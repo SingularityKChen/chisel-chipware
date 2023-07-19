@@ -27,11 +27,11 @@ import chisel3.experimental._
   *
   * === Description ===
   *
-  * | LEFT | TC | Operation | Equivalent | Function |
-  * |------|----|-----------|------------|---------|
-  * | 0 | 0 | logical | right | shift | CW_LSHIFTR |
-  * | 0 | 1 | arithmetic | right | shift | CW_ASHIFTR |
-  * | 1 | X | logical | left | shift | CW_LSHIFTL |
+  * | LEFT | TC | Operation | Equivalent Function |
+  * |------|----|-----------|---------------------|
+  * | 0 | 0 | logical right shift | CW_LSHIFTR |
+  * | 0 | 1 | arithmetic right shift | CW_ASHIFTR |
+  * | 1 | X | logical left shift | CW_LSHIFTL |
   *
   * @param wA  A width and Z width
   * @param wSH  SH width

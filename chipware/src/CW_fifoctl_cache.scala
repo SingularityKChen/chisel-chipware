@@ -29,10 +29,8 @@ import chisel3.experimental._
   * | rd_data_d         | width | input     | ram data interface                    |
   * | flagRNE           | 1 bit | input     | flag - RAM not Empty                  |
   * | flagRNEP          | 1 bit | input     | flag - RAM not Empty Pending          |
-  * | cache_word_count_next |      | input     | unregistered number of word locations |
-  *                      |       |           | in the cache that are occupied        |
-  * | cache_encoded_word_count |    | output  | registered and encoded number of word |
-  *                      |       |           | locations in the cache that are occupied |
+  * | cache_word_count_next |      | input     | unregistered number of word locations in the cache that are occupied |
+  * | cache_encoded_word_count |    | output  | registered and encoded number of word locations in the cache that are occupied |
   *
   * @param width              width of data interface (>=1)
   * @param cache_depth        depth of cache (>=1)
