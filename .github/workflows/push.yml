@@ -5,7 +5,7 @@ jobs:
     container: archlinux/archlinux:latest
     steps:
       - name: Install dependencies
-        run: pacman -Syu --noconfirm make mill z3
+        run: pacman -Syu --noconfirm make mill z3 verilator
       - uses: actions/checkout@v2
       - name: Test
         run: make test
