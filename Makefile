@@ -2,11 +2,11 @@ BUILD_DIR = ./build
 
 export PATH := $(PATH):$(abspath ./utils)
 
-test:
+test: reformat
 	mkdir -p $(BUILD_DIR)
 	utils/mill -i -j 0 __.test
 
-verilog:
+verilog: reformat
 	mkdir -p $(BUILD_DIR)
 	utils/mill -i -j 0 __.test.runMain Elaborate -td $(BUILD_DIR)
 
