@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fir_seq ==
@@ -47,7 +48,8 @@ class CW_fir_seq(val data_in_width: Int = 8, val coef_width: Int = 8, val data_o
         "data_out_width" -> data_out_width,
         "order" -> order
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(data_in_width >= 1, "data_in_width must be >= 1")
   require(coef_width >= 1, "coef_width must be >= 1")
   require(data_out_width >= 1, "data_out_width must be >= 1")

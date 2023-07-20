@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 // ScalaDoc before the definition of the Chisel BlackBox class
 /**
@@ -42,7 +43,8 @@ class CW_fp_mac(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compli
         "exp_width" -> exp_width,
         "ieee_compliance" -> ieee_compliance
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require((sig_width >= 2) && (sig_width <= 23), "sig_width must be between 2 and 23")
   require((exp_width >= 3) && (exp_width <= 8), "exp_width must be between 3 and 8")
 

@@ -1,5 +1,6 @@
 import chisel3._
-import chisel3.experimental._ // To enable experimental features
+import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath // To enable experimental features
 
 /**
   *  == CW_addsub_dx ==
@@ -47,7 +48,8 @@ class CW_addsub_dx(width: Int = 4, p1_width: Int = 2)
         "width" -> width,
         "p1_width" -> p1_width
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(width >= 4, s"width must be >= 4, got $width")
   require(p1_width >= 2 && p1_width <= width - 2, s"p1_width should in range [2, ${width - 2}], got $p1_width")
   val io = IO(new Bundle {

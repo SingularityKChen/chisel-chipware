@@ -94,7 +94,8 @@ class CW_fifoctl_2c_df(
         "clr_dual_domain" -> clr_dual_domain,
         "arch_type" -> arch_type
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 2 && width <= 1024, "width must be in range [2, 1024]")
   require(ram_depth >= 2 && ram_depth <= 1024, "ram_depth must be in range [2, 1024]")

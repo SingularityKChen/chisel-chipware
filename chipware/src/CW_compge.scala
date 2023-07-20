@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_compge ==
@@ -25,7 +26,7 @@ import chisel3.experimental._
   * | AEB    | 1          | Output    | High when A = B        |
   * @param wA  A and B input width
   */
-class CW_compge(val wA: Int = 8) extends BlackBox(Map("wA" -> wA)) {
+class CW_compge(val wA: Int = 8) extends BlackBox(Map("wA" -> wA)) with HasBlackBoxPath {
   // Validation of all parameters
   require(wA >= 1, "wA must be >= 1")
 

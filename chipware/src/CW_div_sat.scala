@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_div_sat ==
@@ -49,7 +50,8 @@ class CW_div_sat(
         "tc_mode" -> tc_mode,
         "rem_mode" -> rem_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(a_width >= 2, s"a_width must be >= 2, got $a_width")
   require(b_width >= 2, s"b_width must be >= 2, got $b_width")

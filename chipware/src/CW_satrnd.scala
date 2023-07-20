@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_satrnd ==
@@ -38,7 +39,8 @@ class CW_satrnd(val W: Int = 16, val M: Int = 15, val L: Int = 0)
         "M" -> M,
         "L" -> L
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(W >= 2, s"W must be >= 2, but got $W")
   require(M > L && M <= W - 1, s"M must be > L and <= W - 1, but got M = $M, L = $L, W = $W")
   require(L >= 0 && L < M, s"L must be >= 0 and < M, but got L = $L, M = $M")

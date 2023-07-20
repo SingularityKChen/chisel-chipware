@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_prod_sum ==
@@ -38,7 +39,8 @@ class CW_prod_sum(val wAi: Int = 4, val wBi: Int = 5, val numinputs: Int = 4, va
         "numinputs" -> numinputs,
         "wZ" -> wZ
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(wAi >= 1, "wAi must be >= 1")
   require(wBi >= 1, "wBi must be >= 1")

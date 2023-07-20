@@ -46,7 +46,8 @@ class CW_arbiter_sp(n: Int, park_mode: Int, park_index: Int, output_mode: Int)
         "park_index" -> 0,
         "output_mode" -> 1
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   protected val index_width: Int = log2Ceil(n)
 
   val io = IO(new Bundle {

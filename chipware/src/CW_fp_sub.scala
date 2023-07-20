@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fp_sub ==
@@ -37,7 +38,8 @@ class CW_fp_sub(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compli
         "exp_width" -> exp_width,
         "ieee_compliance" -> ieee_compliance
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(sig_width >= 5 && sig_width <= 64, "sig_width must be between 5 and 64")
   require(exp_width >= 5 && exp_width <= 15, "exp_width must be between 5 and 15")
 

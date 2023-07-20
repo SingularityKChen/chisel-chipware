@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_cntr_gray ==
@@ -33,7 +34,8 @@ class CW_cntr_gray(val width: Int = 4)
       Map(
         "width" -> width
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 1, "width must be >= 1")
 

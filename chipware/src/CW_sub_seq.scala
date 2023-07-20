@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_sub_seq ==
@@ -59,7 +60,8 @@ class CW_sub_seq(
         "output_mode" -> output_mode,
         "early_start" -> early_start
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(a_width >= 3, "a_width must be >= 3")
   require(b_width >= 3, "b_width must be >= 3")

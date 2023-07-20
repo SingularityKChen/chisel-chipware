@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fifo_s1_sf ==
@@ -69,7 +70,8 @@ class CW_fifo_s1_sf(
         "err_mode" -> err_mode,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(width >= 1 && width <= 256, "width must be in the range [1, 256]")
   require(depth >= 2 && depth <= 256, "depth must be in the range [2, 256]")
   require(ae_level >= 1 && ae_level <= depth - 1, "ae_level must be in the range [1, depth - 1]")

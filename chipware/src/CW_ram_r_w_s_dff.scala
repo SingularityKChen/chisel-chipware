@@ -1,7 +1,7 @@
 // Filename: CW_ram_r_w_s_dff.scala
 import chisel3._
 import chisel3.experimental._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 
 /**
   * == CW_ram_r_w_s_dff ==
@@ -42,7 +42,8 @@ class CW_ram_r_w_s_dff(val data_width: Int = 16, val depth: Int = 8, val rst_mod
         "depth" -> depth,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(data_width >= 1 && data_width <= 2048, s"data_width must be in the range [1, 2048], but got $data_width")
   require(depth >= 2 && depth <= 1024, s"depth must be in the range [2, 1024], but got $depth")
   require(rst_mode >= 0 && rst_mode <= 1, s"rst_mode must be in the range [0, 1], but got $rst_mode")

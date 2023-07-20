@@ -54,7 +54,8 @@ class CW_arbiter_2t(
         "park_index" -> park_index,
         "output_mode" -> output_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(n >= 2 && n <= 32, "n must be between 2 and 32 (inclusive)")
   require(p_width >= 1 && p_width <= 5, "p_width must be between 1 and 5 (inclusive)")
   require(park_mode == 0 || park_mode == 1, "park_mode must be either 0 or 1")

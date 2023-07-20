@@ -1,7 +1,7 @@
 // filename: CW_asymfifoctl_s1_sf.scala
 import chisel3._
 import chisel3.experimental._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 
 /**
   * == CW_asymfifoctl_s1_sf ==
@@ -78,7 +78,8 @@ class CW_asymfifoctl_s1_sf(
         "rst_mode" -> rst_mode,
         "byte_order" -> byte_order
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(
     data_in_width >= 1 && data_in_width <= 256,
     s"data_in_width must be in range [1, 256], but got $data_in_width"

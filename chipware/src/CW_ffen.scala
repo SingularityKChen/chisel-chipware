@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_ffen ==
@@ -30,7 +31,8 @@ class CW_ffen(val wD: Int = 1)
       Map(
         "wD" -> wD
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wD >= 1, s"wD must be >= 1, but got $wD")
 
   val io = IO(new Bundle {

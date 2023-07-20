@@ -110,7 +110,8 @@ class CW_fifo_2c_df(
         "clr_dual_domain" -> clr_dual_domain,
         "arch_type" -> arch_type
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(width >= 2 && width <= 1024, s"width must be in range [2, 1024], but got $width")
   require(ram_depth >= 2 && ram_depth <= 1024, s"ram_depth must be in range [2, 1024], but got $ram_depth")
   require(mem_mode == 0, s"mem_mode must be 0, but got $mem_mode")

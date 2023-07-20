@@ -48,7 +48,8 @@ class CW_arbiter_rr(val num_req: Int = 4, val reg_output: Int = 1, val index_mod
         "reg_output" -> reg_output,
         "index_mode" -> index_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(num_req >= 2 && num_req <= 32, "num_req must be between 2 and 32")
   require(reg_output >= 0 && reg_output <= 1, "reg_output must be 0 or 1")
   require(index_mode >= 0 && index_mode <= 3, "index_mode must be between 0 and 3")

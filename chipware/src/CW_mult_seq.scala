@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_mult_seq ==
@@ -64,7 +65,8 @@ class CW_mult_seq(
         "output_mode" -> output_mode,
         "early_start" -> early_start
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(b_width >= 3, s"b_width must be >= 3, but got $b_width")
   require(a_width >= 3 && a_width <= b_width, s"a_width must be >= 3 and <= b_width, but got $a_width")
   require(tc_mode >= 0 && tc_mode <= 1, s"tc_mode must be 0 or 1, but got $tc_mode")

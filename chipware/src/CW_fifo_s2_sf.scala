@@ -84,7 +84,7 @@ class CW_fifo_s2_sf(
         "rst_mode" -> rst_mode
       )
     )
-    with HasBlackBoxResource {
+    with HasBlackBoxPath {
 
   val io = IO(new Bundle {
     val clk_push:   Clock = Input(Clock())

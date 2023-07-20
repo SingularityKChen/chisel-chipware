@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_bsh ==
@@ -34,7 +35,8 @@ class CW_bsh(val A_width: Int = 8, val SH_width: Int = 3)
         "A_width" -> A_width,
         "SH_width" -> SH_width
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(A_width >= 2, "A_width must be >= 2")
   require(SH_width >= 1, "SH_width must be >= 1")

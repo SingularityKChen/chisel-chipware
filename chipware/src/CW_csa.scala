@@ -29,7 +29,7 @@ import chisel3.util._
   *
   * @param width  Bit width of the inputs and outputs
   */
-class CW_csa(val width: Int = 4) extends BlackBox(Map("width" -> width)) {
+class CW_csa(val width: Int = 4) extends BlackBox(Map("width" -> width)) with HasBlackBoxPath {
   // Validation of the width parameter
   require(width >= 1, "width must be >= 1")
 

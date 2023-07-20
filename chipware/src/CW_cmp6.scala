@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_cmp6 ==
@@ -30,7 +31,7 @@ import chisel3.experimental._
   *
   * @param wA  A and B input width
   */
-class CW_cmp6(val wA: Int = 8) extends BlackBox(Map("wA" -> wA)) {
+class CW_cmp6(val wA: Int = 8) extends BlackBox(Map("wA" -> wA)) with HasBlackBoxPath {
   // Validation of wA parameter
   require(wA >= 1, "wA must be >= 1")
 

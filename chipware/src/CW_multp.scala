@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_multp ==
@@ -37,7 +38,8 @@ class CW_multp(val a_width: Int = 8, val b_width: Int = 8, val out_width: Int = 
         "b_width" -> b_width,
         "out_width" -> out_width
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(a_width >= 1, s"a_width must be >= 1, got $a_width")
   require(b_width >= 1, s"b_width must be >= 1, got $b_width")
   require(out_width >= a_width + b_width + 2, s"out_width must be >= a_width + b_width + 2, got $out_width")

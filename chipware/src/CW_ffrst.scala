@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_ffrst ==
@@ -30,7 +31,8 @@ class CW_ffrst(val wD: Int = 1)
       Map(
         "wD" -> wD
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wD >= 1, "wD must be >= 1")
   val io = IO(new Bundle {
     val CLK:  Clock = Input(Clock())

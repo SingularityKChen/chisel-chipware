@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fftapsen ==
@@ -33,7 +34,8 @@ class CW_fftapsen(val wD: Int = 1, val stages: Int = 1)
         "wD" -> wD,
         "stages" -> stages
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wD >= 1, s"wD must be >= 1, got $wD")
   require(stages >= 1, s"stages must be >= 1, got $stages")
   val io = IO(new Bundle {

@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_cos ==
@@ -30,7 +31,8 @@ class CW_cos(val A_width: Int = 34, val cos_width: Int = 34)
         "A_width" -> A_width,
         "cos_width" -> cos_width
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(A_width >= 2 && A_width <= 34, "A_width must be in range [2, 34]")
   require(cos_width >= 2, "cos_width must be >= 2")

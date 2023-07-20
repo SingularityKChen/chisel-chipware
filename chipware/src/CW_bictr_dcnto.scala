@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_bictr_dcnto ==
@@ -31,7 +32,7 @@ import chisel3.experimental._
   *
   * @param WIDTH  Counter width
   */
-class CW_bictr_dcnto(val WIDTH: Int = 3) extends BlackBox(Map("WIDTH" -> WIDTH)) {
+class CW_bictr_dcnto(val WIDTH: Int = 3) extends BlackBox(Map("WIDTH" -> WIDTH)) with HasBlackBoxPath {
   // Validation of the parameter
   require(WIDTH >= 1, "WIDTH must be >= 1")
 

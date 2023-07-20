@@ -1,5 +1,5 @@
 import chisel3._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 import chisel3.experimental._
 
 /**
@@ -39,7 +39,8 @@ class CW_ram_2r_w_s_lat(val data_width: Int = 16, val depth: Int = 8)
         "data_width" -> data_width,
         "depth" -> depth
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(data_width >= 1 && data_width <= 256, "data_width must be in the range [1, 256]")
   require(depth >= 2 && depth <= 256, "depth must be in the range [2, 256]")
 

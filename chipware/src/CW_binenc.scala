@@ -35,7 +35,8 @@ class CW_binenc(val wA: Int = 2, val wZ: Int = 1)
         "wA" -> wA,
         "wZ" -> wZ
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wA >= 1, s"wA must be >= 1, but got $wA")
   require(wZ >= 1, s"wZ must be >= 1, but got $wZ")
   protected val bit_width_wA: Int = log2Ceil(wA)

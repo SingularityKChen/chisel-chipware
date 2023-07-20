@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 // ScalaDoc before the definition of the Chisel BlackBox class
 /**
@@ -47,7 +48,8 @@ class CW_fp_log2(
         "arch" -> arch,
         "extra_prec" -> extra_prec
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(Set(0, 1, 3).contains(ieee_compliance), "Invalid value for parameter ieee_compliance")
   require(sig_width >= 10 && sig_width <= 23, "Invalid value for parameter sig_width")
   require(sig_width <= math.pow(2, exp_width - 1) - 3, "Invalid value for parameter sig_width")

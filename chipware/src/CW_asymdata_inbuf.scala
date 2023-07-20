@@ -1,6 +1,7 @@
 // filename: CW_asymdata_inbuf.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_asymdata_inbuf ==
@@ -56,7 +57,8 @@ class CW_asymdata_inbuf(
         "byte_order" -> byte_order,
         "flush_value" -> flush_value
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(in_width >= 1 && in_width <= math.pow(2, 9), "in_width must be in range [1, 2^9]")
   require(out_width >= 1 && out_width <= math.pow(2, 9), "out_width must be in range [1, 2^9]")

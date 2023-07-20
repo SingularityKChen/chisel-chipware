@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_ash ==
@@ -34,7 +35,8 @@ class CW_ash(val wA: Int = 4, val wSH: Int = 2)
         "wA" -> wA,
         "wSH" -> wSH
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wA >= 2, s"wA must be >= 2, but got $wA")
   require(wSH >= 1, s"wSH must be >= 1, but got $wSH")
 

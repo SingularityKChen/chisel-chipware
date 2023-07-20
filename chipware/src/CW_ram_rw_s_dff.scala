@@ -42,7 +42,8 @@ class CW_ram_rw_s_dff(val data_width: Int = 16, val depth: Int = 8, val rst_mode
         "depth" -> depth,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Parameter validations
   require(data_width >= 1 && data_width <= 256, s"data_width must be in the range of 1 to 256, got $data_width")
   require(depth >= 2 && depth <= 256, s"depth must be in the range of 2 to 256, got $depth")

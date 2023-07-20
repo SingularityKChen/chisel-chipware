@@ -1,4 +1,5 @@
 import chisel3._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_mult_n_stage ==
@@ -36,7 +37,8 @@ class CW_mult_n_stage(val wA: Int = 8, val wB: Int = 8, val stages: Int = 2)
         "wB" -> wB,
         "stages" -> stages
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wA > 0, "wA must be greater than 0")
   require(wB > 0, "wB must be greater than 0")
   require(stages > 0, "stages must be greater than 0")

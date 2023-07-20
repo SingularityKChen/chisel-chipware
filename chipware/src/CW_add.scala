@@ -1,5 +1,6 @@
 import chisel3._
-import chisel3.experimental._ // To enable experimental features
+import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath // To enable experimental features
 
 /**
   * This component performs addition of integer inputs `A` and `B`, and a carry in `CI`, producing output `Z` and carry out `CO`.
@@ -49,7 +50,7 @@ import chisel3.experimental._ // To enable experimental features
   * }
   * }}}
   */
-class CW_add(val wA: Int = 4) extends BlackBox(Map("wA" -> wA)) {
+class CW_add(val wA: Int = 4) extends BlackBox(Map("wA" -> wA)) with HasBlackBoxPath {
   require(wA >= 1, "wA must be >= 1")
   val io = IO(new Bundle {
     val A:  UInt = Input(UInt(wA.W))

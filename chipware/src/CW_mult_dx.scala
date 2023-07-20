@@ -1,6 +1,7 @@
 // filename: CW_mult_dx.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_mult_dx ==
@@ -35,7 +36,8 @@ class CW_mult_dx(val width: Int = 16, val p1_width: Int = 8)
         "width" -> width,
         "p1_width" -> p1_width
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 4, "width must be >= 4")
   require(p1_width >= 2 && p1_width <= width - 2, "p1_width should be in range [2, width - 2]")

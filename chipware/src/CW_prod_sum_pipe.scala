@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_prod_sum_pipe ==
@@ -62,7 +63,8 @@ class CW_prod_sum_pipe(
         "rst_mode" -> rst_mode,
         "op_iso_mode" -> op_iso_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(a_width >= 1, "a_width must be >= 1")
   require(b_width >= 1, "b_width must be >= 1")
   require(num_inputs >= 1, "num_inputs must be >= 1")

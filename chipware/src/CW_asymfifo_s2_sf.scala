@@ -1,6 +1,7 @@
 // filename: CW_asymfifo_s2_sf.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_asymfifo_s2_sf ==
@@ -100,7 +101,8 @@ class CW_asymfifo_s2_sf(
         "rst_mode" -> rst_mode,
         "byte_order" -> byte_order
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(data_in_width >= 1 && data_in_width <= 256, "data_in_width must be in range [1, 256]")
   require(data_out_width >= 1 && data_out_width <= 256, "data_out_width must be in range [1, 256]")
   require(depth >= 4 && depth <= 256, "depth must be in range [4, 256]")

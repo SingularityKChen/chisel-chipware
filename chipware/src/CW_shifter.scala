@@ -39,7 +39,8 @@ class CW_shifter(val data_width: Int = 8, val sh_width: Int = 3, val inv_mode: I
         "sh_width" -> sh_width,
         "inv_mode" -> inv_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(data_width >= 2, "data_width must be >= 2")
   require(

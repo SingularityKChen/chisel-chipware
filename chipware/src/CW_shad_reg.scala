@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_shad_reg ==
@@ -38,7 +39,8 @@ class CW_shad_reg(val width: Int = 8, val bld_shad_reg: Int = 0)
         "width" -> width,
         "bld_shad_reg" -> bld_shad_reg
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(width >= 1 && width <= 512, s"width must be in range [1, 512], but got $width")
   require(bld_shad_reg == 0 || bld_shad_reg == 1, s"bld_shad_reg must be either 0 or 1, but got $bld_shad_reg")
 

@@ -1,6 +1,7 @@
 // filename: CW_fifoctl_cache.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fifoctl_cache ==
@@ -41,7 +42,8 @@ class CW_fifoctl_cache(val width: Int = 8, val cache_depth: Int = 3)
         "width" -> width,
         "cache_depth" -> cache_depth
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 1, "width must be >= 1")
   require(cache_depth >= 1, "cache_depth must be >= 1")

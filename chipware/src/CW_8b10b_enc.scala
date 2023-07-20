@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 // ScalaDoc before the definition of the Chisel BlackBox class
 /**
@@ -57,7 +58,8 @@ class CW_8b10b_enc(
         "rst_mode" -> IntParam(rst_mode),
         "op_iso_mode" -> IntParam(op_iso_mode)
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   val io = IO(new Bundle {
     val clk:         Clock = Input(Clock())
     val rst_n:       Bool  = Input(Bool())

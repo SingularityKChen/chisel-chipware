@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_bictr_decode ==
@@ -34,7 +35,8 @@ class CW_bictr_decode(val WIDTH: Int = 3)
       Map(
         "WIDTH" -> WIDTH
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(WIDTH > 0 && WIDTH <= 32, "WIDTH must be between 1 and 32")
   val io = IO(new Bundle {
     val data:      UInt  = Input(UInt(WIDTH.W))

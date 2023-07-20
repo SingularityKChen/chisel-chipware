@@ -1,5 +1,6 @@
 import chisel3._
-import chisel3.experimental._ // To enable experimental features
+import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath // To enable experimental features
 /**
   * == CW_fp_addsub ==
   *
@@ -37,7 +38,8 @@ class CW_fp_addsub(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_com
         "exp_width" -> exp_width,
         "ieee_compliance" -> ieee_compliance
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validations for parameters
   require(sig_width >= 5 && sig_width <= 64, s"sig_width must be in the range [5, 64]")
   require(exp_width >= 5 && exp_width <= 15, s"exp_width must be in the range [5, 15]")

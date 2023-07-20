@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_bin2gray ==
@@ -27,7 +28,8 @@ class CW_bin2gray(val WIDTH: Int = 4)
       Map(
         "WIDTH" -> WIDTH
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(WIDTH > 0, "WIDTH must be greater than 0")
   val io = IO(new Bundle {
     val b: UInt = Input(UInt(WIDTH.W))

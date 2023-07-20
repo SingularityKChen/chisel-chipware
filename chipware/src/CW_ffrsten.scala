@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_ffrsten ==
@@ -32,7 +33,8 @@ class CW_ffrsten(val wD: Int = 1)
       Map(
         "wD" -> wD
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wD >= 1, s"Data width must be >= 1, but got $wD")
   val io = IO(new Bundle {
     val CLK:  Clock = Input(Clock())

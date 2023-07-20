@@ -66,7 +66,8 @@ class CW_asymfifo_s1_df(
         "rst_mode" -> rst_mode,
         "byte_order" -> byte_order
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(data_in_width >= 1 && data_in_width <= 256, "data_in_width must be in range [1, 256]")
   require(data_out_width >= 1 && data_out_width <= 256, "data_out_width must be in range [1, 256]")

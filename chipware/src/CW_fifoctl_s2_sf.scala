@@ -87,7 +87,8 @@ class CW_fifoctl_s2_sf(
         "rst_mode" -> rst_mode,
         "tst_mode" -> tst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(depth >= 4 && depth <= 16777216, s"depth must be >= 4 and <= 16777216, but got $depth")
   require(
     push_ae_lvl >= 1 && push_ae_lvl <= depth - 1,

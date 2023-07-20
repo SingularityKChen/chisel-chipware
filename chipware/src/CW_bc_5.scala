@@ -1,5 +1,6 @@
 // filename: CW_bc_5.scala
 import chisel3._
+import chisel3.util.HasBlackBoxPath
 
 // ScalaDoc before the definition of the Chisel BlackBox class
 /**
@@ -28,7 +29,7 @@ import chisel3._
   * | data_out    | 1     | output    | Output data                                         |
   * | so          | 1     | output    | Serial path out to the next BS cell                  |
   */
-class CW_bc_5 extends BlackBox {
+class CW_bc_5 extends BlackBox with HasBlackBoxPath {
   // Define ports with type annotations
   val io = IO(new Bundle {
     val capture_clk: Clock = Input(Clock())

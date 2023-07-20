@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_absval ==
@@ -23,7 +24,7 @@ import chisel3.experimental._
   *
   * @param wA  A and Z width
   */
-class CW_absval(val wA: Int = 8) extends BlackBox(Map("wA" -> wA)) {
+class CW_absval(val wA: Int = 8) extends BlackBox(Map("wA" -> wA)) with HasBlackBoxPath {
   // Validation of the parameter
   require(wA >= 1, "wA must be >= 1")
 

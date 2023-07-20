@@ -1,6 +1,7 @@
 // Import statements
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 // Start defining the Chisel BlackBox class with ScalaDoc
 /**
@@ -46,7 +47,8 @@ class CW_fir(val data_in_width: Int = 8, val coef_width: Int = 8, val data_out_w
         "data_out_width" -> data_out_width,
         "order" -> order
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(data_in_width >= 1, "data_in_width must be >= 1")
   require(coef_width >= 1, "coef_width must be >= 1")

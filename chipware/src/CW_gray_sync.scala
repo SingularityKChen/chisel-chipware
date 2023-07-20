@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_gray_sync ==
@@ -70,7 +71,8 @@ class CW_gray_sync(
         "reg_count_s" -> reg_count_s,
         "reg_offset_count_s" -> reg_offset_count_s
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(width >= 1 && width <= 1024, "width must be in the range [1, 1024]")
   require(offset >= 0 && offset <= ((1 << (width - 1)) - 1), "offset must be in the range [0, 2^(width-1)-1]")
   require(reg_count_d >= 0 && reg_count_d <= 1, "reg_count_d must be in the range [0, 1]")

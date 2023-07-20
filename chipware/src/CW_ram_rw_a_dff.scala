@@ -1,6 +1,6 @@
 import chisel3._
 import chisel3.experimental._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 
 /**
   * == CW_ram_rw_a_dff ==
@@ -41,7 +41,8 @@ class CW_ram_rw_a_dff(val data_width: Int, val depth: Int, val rst_mode: Int)
         "depth" -> depth,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validations for parameters
   require(data_width >= 1 && data_width <= 256, "data_width must be in the range of 1 to 256")
   require(depth >= 2 && depth <= 256, "depth must be in the range of 2 to 256")

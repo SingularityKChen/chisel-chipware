@@ -1,5 +1,6 @@
 import chisel3._
-import chisel3.experimental._ // To enable experimental features
+import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath // To enable experimental features
 
 /**
   * == CW_fp_sincos ==
@@ -45,7 +46,8 @@ class CW_fp_sincos(
         "ieee_compliance" -> ieee_compliance,
         "pi_multiple" -> pi_multiple
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(sig_width >= 2 && sig_width <= 33, "sig_width must be in range [2, 33]")
   require(exp_width >= 3 && exp_width <= 31, "exp_width must be in range [3, 31]")
   require((pi_multiple == 0 || pi_multiple == 1), "pi_multiple must be either 0 or 1")

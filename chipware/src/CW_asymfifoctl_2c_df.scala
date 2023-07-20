@@ -139,7 +139,8 @@ class CW_asymfifoctl_2c_df(
         "tst_mode" -> tst_mode,
         "verif_en" -> verif_en
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(data_s_width >= 1 && data_s_width <= 1024, "data_s_width should be in range [1, 1024]")
   require(data_d_width >= 1 && data_d_width <= 1024, "data_d_width should be in range [1, 1024]")
   require(ram_depth >= 2 && ram_depth <= 16777216, "ram_depth should be in range [2, 16777216]")

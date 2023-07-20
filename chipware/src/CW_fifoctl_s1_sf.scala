@@ -71,7 +71,8 @@ class CW_fifoctl_s1_sf(
         "err_mode" -> err_mode,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(depth >= 2 && depth <= math.pow(2, 24), "depth must be between 2 and 2^24")
   require(ae_level >= 1 && ae_level <= depth - 1, "ae_level must be between 1 and depth - 1")

@@ -1,5 +1,6 @@
 import chisel3._
-import chisel3.experimental._ // To enable experimental features
+import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath // To enable experimental features
 
 /**
   * == CW_addsub ==
@@ -32,7 +33,8 @@ class CW_addsub(val wA: Int = 8)
       Map(
         "wA" -> wA
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wA >= 1, "wA must be >= 1")
   val io = IO(new Bundle {
     val A:   UInt = Input(UInt(wA.W))

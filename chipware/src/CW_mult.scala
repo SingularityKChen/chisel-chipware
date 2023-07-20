@@ -1,6 +1,7 @@
 // filename: CW_mult.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_mult ==
@@ -34,7 +35,8 @@ class CW_mult(val wA: Int = 8, val wB: Int = 8)
         "wA" -> wA,
         "wB" -> wB
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(wA >= 1, "wA must be >= 1")
   require(wB >= 1, "wB must be >= 1")

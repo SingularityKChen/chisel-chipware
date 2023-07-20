@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_div_pipe ==
@@ -67,7 +68,8 @@ class CW_div_pipe(
         "op_iso_mode" -> op_iso_mode,
         "arch" -> arch
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(a_width >= 2, s"a_width must be >= 2, but got $a_width")
   require(b_width >= 2 && b_width <= a_width, s"b_width must be >= 2 and <= a_width, but got $b_width")
   require(tc_mode >= 0 && tc_mode <= 1, s"tc_mode must be 0 or 1, but got $tc_mode")

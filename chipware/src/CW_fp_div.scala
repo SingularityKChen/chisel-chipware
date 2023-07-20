@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fp_div ==
@@ -38,7 +39,8 @@ class CW_fp_div(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compli
         "exp_width" -> exp_width,
         "ieee_compliance" -> ieee_compliance
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(
     sig_width >= 5 && sig_width <= 23,

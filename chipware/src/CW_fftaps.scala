@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fftaps ==
@@ -32,7 +33,8 @@ class CW_fftaps(val wD: Int = 1, val stages: Int = 1)
         "wD" -> wD,
         "stages" -> stages
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wD >= 1, "wD must be >= 1")
   require(stages >= 1, "stages must be >= 1")
   protected val bit_width_Q: Int = stages * wD

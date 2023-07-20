@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_lfsr_updn ==
@@ -32,7 +33,8 @@ class CW_lfsr_updn(val width: Int = 8)
       Map(
         "width" -> width
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 2 && width <= 50, "width must be in the range [2, 50]")
 

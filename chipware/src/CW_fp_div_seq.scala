@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fp_div_seq ==
@@ -73,7 +74,8 @@ class CW_fp_div_seq(
         "num_cyc" -> num_cyc,
         "arch" -> arch
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(sig_width >= 2 && sig_width <= 256, "sig_width must be between 2 and 256")
   require(exp_width >= 3 && exp_width <= 31, "exp_width must be between 3 and 31")

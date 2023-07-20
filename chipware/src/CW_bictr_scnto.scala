@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_bictr_scnto ==
@@ -37,7 +38,8 @@ class CW_bictr_scnto(val WIDTH: Int = 3, val COUNT_TO: Int = 2)
         "WIDTH" -> WIDTH,
         "COUNT_TO" -> COUNT_TO
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(WIDTH >= 1 && WIDTH <= 30, s"WIDTH must be >= 1 and <= 30, but got $WIDTH")
   require(COUNT_TO >= 1 && COUNT_TO <= (1 << WIDTH) - 1, s"COUNT_TO must be >= 1 and <= 2^WIDTH - 1, but got $COUNT_TO")
 

@@ -1,5 +1,6 @@
 import chisel3._
-import chisel3.experimental._ // To enable experimental features
+import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath // To enable experimental features
 
 /**
   * == CW_fp_i2flt ==
@@ -39,7 +40,8 @@ class CW_fp_i2flt(val sig_width: Int = 23, val exp_width: Int = 8, val isize: In
         "isize" -> isize,
         "isign" -> isign
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(sig_width >= 2 && sig_width <= 253, s"sig_width must be in the range [2, 253], but got $sig_width")
   require(isize >= 3 && isize <= 512, s"isize must be in the range [3, 512], but got $isize")

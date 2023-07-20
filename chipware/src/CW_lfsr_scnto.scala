@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_lfsr_scnto ==
@@ -36,7 +37,8 @@ class CW_lfsr_scnto(val width: Int = 8, val count_to: Int = 5)
         "width" -> width,
         "count_to" -> count_to
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(width >= 2 && width <= 50, "width must be in the range [2, 50]")
   require(count_to >= 1 && count_to <= (1 << (width - 2)), "count_to must be in the range [1, 2^width-2]")
 

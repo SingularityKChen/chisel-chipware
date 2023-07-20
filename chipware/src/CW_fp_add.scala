@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fp_add ==
@@ -48,7 +49,8 @@ class CW_fp_add(
         "ieee_NaN_compliance" -> ieee_NaN_compliance,
         "arch" -> arch
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validations for parameters
   require(sig_width >= 5 && sig_width <= 64, s"sig_width must be in the range [5, 64]")
   require(exp_width >= 5 && exp_width <= 15, s"exp_width must be in the range [5, 15]")

@@ -1,5 +1,5 @@
 import chisel3._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 import chisel3.experimental._ // To enable experimental features
 
 // ScalaDoc before the definition of the Chisel BlackBox class
@@ -46,7 +46,8 @@ class CW_ram_2r_w_a_lat(val data_width: Int = 16, val depth: Int = 8, val rst_mo
         "depth" -> depth,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
 
   // Parameter checking
   require(data_width >= 1, "data_width must be >= 1")

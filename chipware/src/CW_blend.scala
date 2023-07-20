@@ -1,6 +1,7 @@
 // filename: CW_blend.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_blend ==
@@ -37,7 +38,8 @@ class CW_blend(val wX: Int = 8, val wA: Int = 8)
         "wX" -> wX,
         "wA" -> wA
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wX >= 1, s"wX must be >= 1, but got $wX")
   require(wA >= 1, s"wA must be >= 1, but got $wA")
 

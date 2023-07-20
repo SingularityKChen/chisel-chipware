@@ -1,4 +1,5 @@
 import chisel3._
+import chisel3.util.HasBlackBoxPath
 
 // Define the Chisel BlackBox class with ScalaDoc
 /**
@@ -22,7 +23,7 @@ import chisel3._
   * | so           | 1     | output    | Serial path out to the next BS cell                   |
   * | data_out     | 1     | output    | Output data                                          |
   */
-class CW_bc_4 extends BlackBox {
+class CW_bc_4 extends BlackBox with HasBlackBoxPath {
   val io = IO(new Bundle {
     val capture_clk: Clock = Input(Clock())
     val capture_en:  Bool  = Input(Bool())

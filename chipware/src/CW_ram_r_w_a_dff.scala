@@ -1,6 +1,6 @@
 // filename: CW_ram_r_w_a_dff.scala
 import chisel3._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 import chisel3.experimental._
 
 /**
@@ -43,7 +43,8 @@ class CW_ram_r_w_a_dff(val data_width: Int = 16, val depth: Int = 8, val rst_mod
         "depth" -> depth,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validations
   require(data_width >= 1, "data_width must be >= 1")
   require(data_width <= 256, "data_width should be <= 256")

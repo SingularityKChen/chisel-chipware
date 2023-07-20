@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fp_cmp ==
@@ -50,7 +51,8 @@ class CW_fp_cmp(
         "ieee_compliance" -> ieee_compliance,
         "quieten_nans" -> quieten_nans
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(sig_width >= 2 && sig_width <= 253, s"sig_width must be between 2 and 253 (inclusive), but got $sig_width")
   require(exp_width >= 3 && exp_width <= 31, s"exp_width must be between 3 and 31 (inclusive), but got $exp_width")

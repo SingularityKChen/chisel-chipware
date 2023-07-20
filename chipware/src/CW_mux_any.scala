@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_mux_any ==
@@ -35,7 +36,8 @@ class CW_mux_any(val wA: Int = 8, val wS: Int = 2, val wZ: Int = 2)
         "wS" -> wS,
         "wZ" -> wZ
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wA >= 1, s"wA must be >= 1, but got $wA")
   require(wS >= 1, s"wS must be >= 1, but got $wS")
   require(wZ >= 1, s"wZ must be >= 1, but got $wZ")

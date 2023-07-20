@@ -39,7 +39,8 @@ class CW_ram_r_w_s_lat(val data_width: Int = 16, val depth: Int = 8)
         "data_width" -> data_width,
         "depth" -> depth
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validations for parameters
   require(data_width >= 1, "data_width must be >= 1")
   require(data_width <= 256, "data_width must be <= 256")

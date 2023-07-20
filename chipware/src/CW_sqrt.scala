@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_sqrt ==
@@ -31,7 +32,8 @@ class CW_sqrt(val width: Int = 8, val tc_mode: Int = 0)
         "width" -> width,
         "tc_mode" -> tc_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 2, "width must be >= 2")
   require(tc_mode == 0 || tc_mode == 1, "tc_mode should be 0 or 1")

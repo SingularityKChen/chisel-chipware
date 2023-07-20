@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_sqrt_pipe ==
@@ -52,7 +53,8 @@ class CW_sqrt_pipe(
         "rst_mode" -> rst_mode,
         "op_iso_mode" -> op_iso_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 2, s"width must be >= 2, but got $width")
   require(tc_mode >= 0 && tc_mode <= 1, s"tc_mode should be in range [0, 1], but got $tc_mode")

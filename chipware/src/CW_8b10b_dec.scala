@@ -1,6 +1,7 @@
 // filename: CW_8b10b_dec.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_8b10b_dec ==
@@ -62,7 +63,8 @@ class CW_8b10b_dec(
         "rst_mode" -> rst_mode,
         "op_iso_mode" -> op_iso_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(bytes >= 1 && bytes <= 16, s"bytes must be between 1 and 16 (inclusive), got: $bytes")
   require(k28_5_only >= 0 && k28_5_only <= 1, s"k28_5_only must be either 0 or 1, got: $k28_5_only")

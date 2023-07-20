@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_shftreg ==
@@ -32,7 +33,8 @@ class CW_shftreg(val length: Int = 4)
       Map(
         "length" -> length
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(length >= 1, "length must be >= 1")
   // Define ports with type annotations

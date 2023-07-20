@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_multadd ==
@@ -40,7 +41,8 @@ class CW_multadd(val wA: Int = 8, val wB: Int = 8, val wC: Int = 16, val wZ: Int
         "wC" -> wC,
         "wZ" -> wZ
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(wA >= 1, "wA must be >= 1")
   require(wB >= 1, "wB must be >= 1")
   require(wC >= 1, "wC must be >= 1")

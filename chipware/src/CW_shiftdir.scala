@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_shiftdir ==
@@ -42,7 +43,8 @@ class CW_shiftdir(val wA: Int = 2, val wSH: Int = 1)
         "wA" -> wA,
         "wSH" -> wSH
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(wA >= 2, "wA must be >= 2")
   require(wSH >= 1, "wSH must be >= 1")

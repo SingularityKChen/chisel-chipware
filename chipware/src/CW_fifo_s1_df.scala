@@ -52,7 +52,8 @@ class CW_fifo_s1_df(val width: Int = 8, val depth: Int = 4, val err_mode: Int = 
         "err_mode" -> err_mode,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 1 && width <= 256, "width must be in the range [1, 256]")
   require(depth >= 2 && depth <= 256, "depth must be in the range [2, 256]")

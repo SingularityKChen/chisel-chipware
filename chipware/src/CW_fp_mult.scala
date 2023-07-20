@@ -1,5 +1,6 @@
 import chisel3._
-import chisel3.experimental._ // To enable experimental features
+import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath // To enable experimental features
 
 /**
   *  == CW_fp_mult ==
@@ -38,7 +39,8 @@ class CW_fp_mult(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compl
         "ieee_compliance" -> ieee_compliance,
         "arch" -> arch
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(sig_width >= 2 && sig_width <= 112, "sig_width must be in the range [2, 112]")
   require(exp_width >= 3 && exp_width <= 15, "exp_width must be in the range [3, 15]")
   require(Seq(0, 1).contains(ieee_compliance), "ieee_compliance must be either 0 or 1")

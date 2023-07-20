@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_crc_s ==
@@ -68,7 +69,8 @@ class CW_crc_s(
         "poly_coef2" -> poly_coef2,
         "poly_coef3" -> poly_coef3
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(data_width >= 1 && data_width <= poly_size, "data_width must be in range [1, poly_size]")
   require(poly_size >= 2 && poly_size <= 64, "poly_size must be in range [2, 64]")

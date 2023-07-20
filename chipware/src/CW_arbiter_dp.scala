@@ -1,5 +1,5 @@
 import chisel3._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 import chisel3.experimental._ // To enable experimental features
 
 /**
@@ -47,7 +47,8 @@ class CW_arbiter_dp(val n: Int = 4, val park_mode: Int = 1, val park_index: Int 
         "park_index" -> park_index,
         "output_mode" -> output_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(n >= 2 && n <= 32, "n must be in the range [2, 32]")
   require(park_mode == 0 || park_mode == 1, "park_mode must be either 0 or 1")
   require(park_index >= 0 && park_index < n, "park_index must be in the range [0, n-1]")

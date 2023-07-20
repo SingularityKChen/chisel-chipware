@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_gray2bin ==
@@ -28,7 +29,8 @@ class CW_gray2bin(val WIDTH: Int = 3)
       Map(
         "WIDTH" -> WIDTH
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(WIDTH >= 1, "WIDTH must be >= 1")
 

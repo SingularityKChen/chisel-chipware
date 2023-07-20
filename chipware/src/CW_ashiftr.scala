@@ -1,5 +1,5 @@
 import chisel3._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 import chisel3.experimental._ // To enable experimental features
 
 /**
@@ -41,7 +41,9 @@ import chisel3.experimental._ // To enable experimental features
   * The following table illustrates the CW_ashiftr behavior for an input width of 6 bits (wA=6, wSH=3).
   */
 
-class CW_ashiftr(val wA: Int = 2, val wSH: Int = 1) extends BlackBox(Map("wA" -> wA, "wSH" -> wSH)) {
+class CW_ashiftr(val wA: Int = 2, val wSH: Int = 1)
+    extends BlackBox(Map("wA" -> wA, "wSH" -> wSH))
+    with HasBlackBoxPath {
   require(wA >= 2, "wA must be >= 2")
   require(Range(1, log2Ceil(wA) + 1).contains(wSH), f"wSH ${wSH} should in range [1, log2Ceil(${wA})]")
   val io = IO(new Bundle {

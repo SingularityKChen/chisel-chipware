@@ -35,7 +35,8 @@ class CW_lfsr_dcnto(val width: Int = 8)
       Map(
         "width" -> width
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 1 && width <= 50, "width must be in the range [1, 50]")
 

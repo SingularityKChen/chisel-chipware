@@ -50,7 +50,8 @@ class CW_fifoctl_s1_df(val depth: Int = 4, val err_mode: Int = 0, val rst_mode: 
         "err_mode" -> err_mode,
         "rst_mode" -> rst_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(depth >= 2 && depth <= 224, "depth must be between 2 and 224")
   require(err_mode >= 0 && err_mode <= 2, "err_mode must be between 0 and 2")
   require(rst_mode == 0 || rst_mode == 1, "rst_mode must be either 0 or 1")

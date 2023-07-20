@@ -1,6 +1,7 @@
 // filename: CW_ff.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_ff ==
@@ -30,7 +31,8 @@ class CW_ff(val wD: Int = 1)
       Map(
         "wD" -> wD
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(wD >= 1, "wD must be >= 1")
   val io = IO(new Bundle {

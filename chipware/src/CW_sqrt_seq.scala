@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_sqrt_seq ==
@@ -58,7 +59,8 @@ class CW_sqrt_seq(
         "output_mode" -> output_mode,
         "early_start" -> early_start
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(width >= 6, s"width must be >= 6, but got $width")
   require(tc_mode >= 0 && tc_mode <= 1, s"tc_mode should be in range [0, 1], but got $tc_mode")

@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_div ==
@@ -43,7 +44,8 @@ class CW_div(val a_width: Int = 8, val b_width: Int = 8, val tc_mode: Int = 0, v
         "rem_mode" -> rem_mode,
         "arch" -> arch
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(a_width >= 2, "a_width must be >= 2")
   require(b_width >= 2, "b_width must be >= 2")
   require(tc_mode == 0 || tc_mode == 1, "tc_mode should be 0 or 1")

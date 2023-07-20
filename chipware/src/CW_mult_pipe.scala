@@ -1,6 +1,7 @@
 // filename: CW_mult_pipe.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_mult_pipe ==
@@ -55,7 +56,8 @@ class CW_mult_pipe(
         "rst_mode" -> rst_mode,
         "op_iso_mode" -> op_iso_mode
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(a_width >= 1, s"a_width must be >= 1, but got $a_width")
   require(b_width >= 1, s"b_width must be >= 1, but got $b_width")

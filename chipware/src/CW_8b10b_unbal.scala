@@ -1,6 +1,7 @@
 // filename: CW_8b10b_unbal.scala
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_8b10b_unbal ==
@@ -26,7 +27,7 @@ import chisel3.experimental._
   *
   * @param k28_5_only Special character subset control parameter, 0 for all special characters available, 1 for only k28.5 available (when k_char = HIGH, regardless of the value on data_in)
   */
-class CW_8b10b_unbal(val k28_5_only: Int = 0) extends BlackBox(Map("k28_5_only" -> k28_5_only)) {
+class CW_8b10b_unbal(val k28_5_only: Int = 0) extends BlackBox(Map("k28_5_only" -> k28_5_only)) with HasBlackBoxPath {
   require(
     k28_5_only >= 0 && k28_5_only <= 1,
     s"Incorrect Parameter value, k28_5_only = $k28_5_only (Valid range: 0 to 1)"

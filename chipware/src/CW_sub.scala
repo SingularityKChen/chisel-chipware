@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_sub ==
@@ -31,7 +32,8 @@ class CW_sub(val wA: Int = 8)
       Map(
         "wA" -> wA
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validation of all parameters
   require(wA >= 1, "wA must be >= 1")
   protected val bit_width_wA: Int = wA

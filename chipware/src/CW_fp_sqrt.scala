@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath
 
 /**
   * == CW_fp_sqrt ==
@@ -36,7 +37,8 @@ class CW_fp_sqrt(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compl
         "exp_width" -> exp_width,
         "ieee_compliance" -> ieee_compliance
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   // Validations
   require(sig_width >= 2 && sig_width <= 253, "sig_width must be between 2 and 253")
   require(exp_width >= 3 && exp_width <= 31, "exp_width must be between 3 and 31")

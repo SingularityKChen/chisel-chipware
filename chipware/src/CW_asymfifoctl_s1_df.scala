@@ -1,6 +1,6 @@
 import chisel3._
 import chisel3.experimental._
-import chisel3.util.log2Ceil
+import chisel3.util.{log2Ceil, HasBlackBoxPath}
 
 /**
   * == CW_asymfifoctl_s1_df ==
@@ -71,7 +71,8 @@ class CW_asymfifoctl_s1_df(
         "rst_mode" -> rst_mode,
         "byte_order" -> byte_order
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   require(data_in_width >= 1 && data_in_width <= 256, "data_in_width must be in range [1, 256]")
   require(data_out_width >= 1 && data_out_width <= 256, "data_out_width must be in range [1, 256]")
   require(depth >= 2 && depth <= 224, "depth must be in range [2, 224]")

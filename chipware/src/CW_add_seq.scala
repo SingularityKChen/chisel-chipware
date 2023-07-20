@@ -1,5 +1,6 @@
 import chisel3._
-import chisel3.experimental._ // To enable experimental features
+import chisel3.experimental._
+import chisel3.util.HasBlackBoxPath // To enable experimental features
 
 /**
   * == CW_add_seq ==
@@ -60,7 +61,8 @@ class CW_add_seq(
         "output_mode" -> output_mode,
         "early_start" -> early_start
       )
-    ) {
+    )
+    with HasBlackBoxPath {
   val io = IO(new Bundle {
     val clk:      Clock = Input(Clock())
     val rst_n:    Bool  = Input(Bool())
