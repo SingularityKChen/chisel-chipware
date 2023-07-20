@@ -1,6 +1,7 @@
 import chisel3._
 import chiseltest._
 import chiseltest.simulator.VerilatorFlags
+import firrtl2.annotations.NoTargetAnnotation
 import utest._
 
 class addWithBlackBox(val wA: Int = 4) extends Module {
