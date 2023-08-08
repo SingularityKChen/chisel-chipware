@@ -13,7 +13,7 @@ class fp_div_seq(
   val internal_reg:    Int = 1,
   val num_cyc:         Int = 5,
   val arch:            Int = 0)
-    extends RawModule {
+    extends Module {
   // Create an instance of the BlackBox class
   protected val U1: CW_fp_div_seq = Module(
     new CW_fp_div_seq(
@@ -32,8 +32,6 @@ class fp_div_seq(
 
   // Define ports
   val io = IO(new Bundle {
-    val clk:      Clock = Input(Clock())
-    val rst_n:    Bool  = Input(Bool())
     val start:    Bool  = Input(Bool())
     val rnd:      Bool  = Input(Bool())
     val a:        UInt  = Input(UInt((sig_width + exp_width + 1).W))
@@ -44,8 +42,8 @@ class fp_div_seq(
   })
 
   // Connect the BlackBox instance ports to the Module ports
-  U1.io.clk   := io.clk
-  U1.io.rst_n := io.rst_n
+  U1.io.clk   := clock
+  U1.io.rst_n := !reset.asBool
   U1.io.start := io.start
   U1.io.rnd   := io.rnd
   U1.io.a     := io.a
