@@ -21,7 +21,7 @@ class mult(val wA: Int = 8, val wB: Int = 8) extends RawModule {
 object mult extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate mult") {
-      def top = new mult()
+      def top = new mult(32, 64)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

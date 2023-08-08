@@ -58,7 +58,7 @@ class fp_div_seq(
 object fp_div_seq extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate fp_div_seq") {
-      def top = new fp_div_seq()
+      def top = new fp_div_seq(23, 8, 0, 0, 1, 1, 0, 1, 4, 0)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

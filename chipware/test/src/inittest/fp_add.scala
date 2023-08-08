@@ -38,7 +38,7 @@ class fp_add(
 object fp_add extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate fp_add") {
-      def top = new fp_add()
+      def top = new fp_add(23, 8, 1, 0, 0)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

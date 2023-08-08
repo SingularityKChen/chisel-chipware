@@ -23,7 +23,7 @@ class sub(val wA: Int = 8) extends RawModule {
 object sub extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate sub") {
-      def top = new sub(8)
+      def top = new sub(32)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

@@ -22,7 +22,7 @@ class add(val wA: Int = 4) extends RawModule {
 object add extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate add") {
-      def top = new add()
+      def top = new add(32)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

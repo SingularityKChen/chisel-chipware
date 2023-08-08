@@ -21,7 +21,7 @@ class fp_sqrt(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_complian
 object fp_sqrt extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate fp_sqrt") {
-      def top = new fp_sqrt()
+      def top = new fp_sqrt(23, 8, 1)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

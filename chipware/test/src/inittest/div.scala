@@ -24,7 +24,7 @@ class div(val a_width: Int = 8, val b_width: Int = 8, val tc_mode: Int = 0, val 
 object div extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate div") {
-      def top = new div(8, 8, 0, 1, 0)
+      def top = new div(32, 32, 1, 1, 0)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

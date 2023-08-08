@@ -22,7 +22,7 @@ class fp_sub(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_complianc
 object fp_sub extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate fp_sub") {
-      def top = new fp_sub()
+      def top = new fp_sub(23, 8, 1)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

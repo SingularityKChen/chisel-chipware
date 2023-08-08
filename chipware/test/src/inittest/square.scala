@@ -18,7 +18,7 @@ class square(val wA: Int = 8) extends RawModule {
 object square extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate square") {
-      def top = new square(8)
+      def top = new square(32)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

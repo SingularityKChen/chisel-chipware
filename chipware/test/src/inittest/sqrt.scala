@@ -16,7 +16,7 @@ class sqrt(val width: Int = 8, val tc_mode: Int = 0) extends RawModule {
 object sqrt extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate sqrt") {
-      def top = new sqrt(8, 0)
+      def top = new sqrt(32, 1)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(
