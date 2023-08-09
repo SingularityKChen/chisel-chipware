@@ -32,13 +32,13 @@ class fp_div_seq(
 
   // Define ports
   val io = IO(new Bundle {
-    val start:    Bool  = Input(Bool())
-    val rnd:      Bool  = Input(Bool())
-    val a:        UInt  = Input(UInt((sig_width + exp_width + 1).W))
-    val b:        UInt  = Input(UInt((sig_width + exp_width + 1).W))
-    val z:        UInt  = Output(UInt((sig_width + exp_width + 1).W))
-    val status:   UInt  = Output(UInt(8.W))
-    val complete: Bool  = Output(Bool())
+    val start:    Bool = Input(Bool())
+    val rnd:      Bool = Input(Bool())
+    val a:        UInt = Input(UInt((sig_width + exp_width + 1).W))
+    val b:        UInt = Input(UInt((sig_width + exp_width + 1).W))
+    val z:        UInt = Output(UInt((sig_width + exp_width + 1).W))
+    val status:   UInt = Output(UInt(8.W))
+    val complete: Bool = Output(Bool())
   })
 
   // Connect the BlackBox instance ports to the Module ports
