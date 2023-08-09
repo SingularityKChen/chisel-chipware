@@ -24,7 +24,7 @@ class fp_mac(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_complianc
 object fp_mac extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate fp_mac") {
-      def top = new fp_mac()
+      def top = new fp_mac(23, 8, 1)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

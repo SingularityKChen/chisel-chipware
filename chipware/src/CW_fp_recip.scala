@@ -60,10 +60,10 @@ class CW_fp_recip(
   require(Seq(0, 1).contains(arch), "arch must be 0 or 1")
 
   val io = IO(new Bundle {
-    val a:      UInt = Input(UInt((sig_width + exp_width).W))
+    val a:      UInt = Input(UInt((sig_width + exp_width + 1).W))
     val rnd:    UInt = Input(UInt(3.W))
     val status: UInt = Output(UInt(8.W))
-    val z:      UInt = Output(UInt((sig_width + exp_width).W))
+    val z:      UInt = Output(UInt((sig_width + exp_width + 1).W))
   })
 
   // Simulation parameter validation

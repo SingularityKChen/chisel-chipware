@@ -10,10 +10,10 @@ class fp_recip(
   val arch:            Int = 0)
     extends RawModule {
   val io = IO(new Bundle {
-    val a:      UInt = Input(UInt((sig_width + exp_width).W))
+    val a:      UInt = Input(UInt((sig_width + exp_width + 1).W))
     val rnd:    UInt = Input(UInt(3.W))
     val status: UInt = Output(UInt(8.W))
-    val z:      UInt = Output(UInt((sig_width + exp_width).W))
+    val z:      UInt = Output(UInt((sig_width + exp_width + 1).W))
   })
   protected val U1: CW_fp_recip = Module(new CW_fp_recip(sig_width, exp_width, ieee_compliance, faithful_round, arch))
 
@@ -26,7 +26,7 @@ class fp_recip(
 object fp_recip extends TestSuite {
   val tests: Tests = Tests {
     test("should instantiate fp_recip") {
-      def top = new fp_recip()
+      def top = new fp_recip(23, 8, 1, 0, 0)
 
       val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
       (new ChiselStage).execute(

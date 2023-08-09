@@ -49,11 +49,11 @@ class CW_fp_mac(val sig_width: Int = 23, val exp_width: Int = 8, val ieee_compli
   require((exp_width >= 3) && (exp_width <= 8), "exp_width must be between 3 and 8")
 
   val io = IO(new Bundle {
-    val a:      UInt = Input(UInt((sig_width + exp_width).W))
-    val b:      UInt = Input(UInt((sig_width + exp_width).W))
-    val c:      UInt = Input(UInt((sig_width + exp_width).W))
+    val a:      UInt = Input(UInt((sig_width + exp_width + 1).W))
+    val b:      UInt = Input(UInt((sig_width + exp_width + 1).W))
+    val c:      UInt = Input(UInt((sig_width + exp_width + 1).W))
     val rnd:    UInt = Input(UInt(3.W))
-    val z:      UInt = Output(UInt((sig_width + exp_width).W))
+    val z:      UInt = Output(UInt((sig_width + exp_width + 1).W))
     val status: UInt = Output(UInt(8.W))
   })
 }
