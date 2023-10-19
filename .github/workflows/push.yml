@@ -8,7 +8,7 @@ jobs:
       - uses: graalvm/setup-graalvm@v1
         with:
           version: '22.3.1' # GraalVM version
-          java-version: '11'
+          java-version: '17'
           distribution: 'graalvm-community'
       - name: Install dependencies
         run: pacman -Syu --noconfirm make parallel wget cmake ninja verilator git llvm clang python autoconf automake
