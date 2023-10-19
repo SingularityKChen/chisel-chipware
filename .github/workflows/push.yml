@@ -4,8 +4,11 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux/archlinux:latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
       - name: Install dependencies
-        run: pacman -Syu --noconfirm make mill z3 parallel wget cmake ninja dtc verilator git llvm clang lld protobuf antlr4 python autoconf automake
-      - uses: actions/checkout@v2
+        run: pacman -Syu --noconfirm make parallel wget cmake ninja verilator git llvm clang python autoconf automake
       - name: Test
         run: make test
