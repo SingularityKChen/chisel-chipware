@@ -4,10 +4,11 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux/archlinux:latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
+      - uses: actions/checkout@v4
+      - uses: graalvm/setup-graalvm@v1
         with:
           java-version: '11'
+          distribution: 'graalvm'
       - name: Install dependencies
         run: pacman -Syu --noconfirm make parallel wget cmake ninja verilator git llvm clang python autoconf automake
       - name: Test
